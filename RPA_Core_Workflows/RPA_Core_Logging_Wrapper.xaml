@@ -1,0 +1,224 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="RPA_Core_Logging_Wrapper" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Log_Message" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Signifies which xaml file is currenlty executing in which the respective Log Message is Logged" Name="in_Executing_Xaml" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Signifies if the Log Level Logged is - Trace, Information, Warning, Error or Fatal" Name="in_Log_Level_Type" Type="InArgument(x:String)" />
+    <x:Property Name="in_Log_Message_ID" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>960,966</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>RPA_Core_Logging_Wrapper_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:Annotation.AnnotationText="The below Wrapper Logs Messages over Uipath Orchestrator along with Additional Logging Information which gives describes Current Bot/User running the Workflow andgive Machine Name over which the Bot is Running&#xA;The Logging Level covered in this Wrapper are - Trace, Information, Error, Warning and Fatal&#xA;Also the Additional Information logged aong with Log Message is -&#xA;- Bot Machine Name&#xA;- Bot User Name&#xA;- Process Name currently executing&#xA;- Xaml Currenlty Executing" DisplayName="RPA_Core_Logging_Wrapper" sap:VirtualizedContainerService.HintSize="696,901" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">300,12.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">330,87.5 330,109</av:PointCollection>
+        <x:Double x:Key="Height">723.3333333333335</x:Double>
+        <x:Double x:Key="Width">661.9999999999998</x:Double>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID7</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">230,109</av:Point>
+          <av:Size x:Key="ShapeSize">200,118</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">330,227 330,246.666666666667 331,246.666666666667</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:AddLogFields sap2010:Annotation.AnnotationText="Adding Necessary Logging Parameters For Better Tracability" DisplayName="Add Log Fields" sap:VirtualizedContainerService.HintSize="200,118" sap2010:WorkflowViewState.IdRef="AddLogFields_1">
+        <ui:AddLogFields.Fields>
+          <InArgument x:TypeArguments="x:String" x:Key="Executing_Xaml">[in_Executing_Xaml]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message _ID">[in_Log_Message_ID]</InArgument>
+        </ui:AddLogFields.Fields>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:AddLogFields>
+      <FlowStep.Next>
+        <FlowSwitch x:TypeArguments="x:String" x:Name="__ReferenceID0" DisplayName="Switch-Log Level" Expression="[in_Log_Level_Type.ToLower]" sap:VirtualizedContainerService.HintSize="96,87" sap2010:WorkflowViewState.IdRef="FlowSwitch`1_2">
+          <FlowSwitch.Default>
+            <FlowStep x:Name="__ReferenceID6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">450,598.333333333333</av:Point>
+                  <av:Size x:Key="ShapeSize">200,92</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage sap2010:Annotation.AnnotationText="Invalid Logging Level" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[&quot;Logging Level Is Invalid&quot;]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+            </FlowStep>
+          </FlowSwitch.Default>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">283,246.666666666667</av:Point>
+              <av:Size x:Key="ShapeSize">96,87</av:Size>
+              <av:PointCollection x:Key="traceConnector">283,290 120,290 120,378.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="infoConnector">379,311.91666666666697 409,311.91666666666697 409,424.333333333333 450,424.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="warnConnector">283,311.91666666666697 253,311.91666666666697 253,534.333333333333 220,534.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="errorConnector">331,333.66666666666697 331,534.333333333333 450,534.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="fatalConnector">307,333.66666666666697 307,644.333333333333 220,644.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="Default">355,333.66666666666697 355,644.333333333333 450,644.333333333333</av:PointCollection>
+              <x:String x:Key="DefaultCaseDisplayName">Invalid Log Level</x:String>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <FlowStep x:Key="trace" x:Name="__ReferenceID1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">20,378.333333333333</av:Point>
+                <av:Size x:Key="ShapeSize">200,92</av:Size>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="Logging Level - Trace" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[in_Log_Message]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </FlowStep>
+          <FlowStep x:Key="info" x:Name="__ReferenceID2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">450,378.333333333333</av:Point>
+                <av:Size x:Key="ShapeSize">200,92</av:Size>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="Logging Level - Information" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[in_Log_Message]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </FlowStep>
+          <FlowStep x:Key="warn" x:Name="__ReferenceID3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">20,488.333333333333</av:Point>
+                <av:Size x:Key="ShapeSize">200,92</av:Size>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="Logging Level - Warning" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[in_Log_Message]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </FlowStep>
+          <FlowStep x:Key="error" x:Name="__ReferenceID4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">450,488.333333333333</av:Point>
+                <av:Size x:Key="ShapeSize">200,92</av:Size>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="Logging Level - Error" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[in_Log_Message]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </FlowStep>
+          <FlowStep x:Key="fatal" x:Name="__ReferenceID5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">20,598.333333333333</av:Point>
+                <av:Size x:Key="ShapeSize">200,92</av:Size>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage sap2010:Annotation.AnnotationText="Logging Level - Fatal" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[in_Log_Message]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+          </FlowStep>
+        </FlowSwitch>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
+  </Flowchart>
+</Activity>
