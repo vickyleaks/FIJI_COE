@@ -1,5 +1,5 @@
 {
-  "name": "FIJI_NonEDI_COE_Process_New",
+  "name": "FIJI_NonEDI_COE_Process",
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {

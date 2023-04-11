@@ -1112,7 +1112,7 @@
                 </ui:Target>
               </ui:SetFocus.Target>
             </ui:SetFocus>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_16" Text="[in_str_customer_po]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_19" Text="[in_str_customer_po]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -1124,15 +1124,15 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_16">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_18">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_84">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_15" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_18" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -1221,21 +1221,11 @@
                   </Assign>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke_Log Wrapper" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                        <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Tuple_Config(ExceptionMessage).Item2.Replace(&quot;{0}&quot;,in_dict_config(&quot;VendorName&quot;).ToString)" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-                        <Literal x:TypeArguments="x:String">FIJI_COE_DataEntry</Literal>
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExceptionMessage" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;Success_ LogTypeMessages&quot;).ToString.split(&quot;,&quot;c)(1)" />
-                      </InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_Tuple_Config(ExceptionMessage).Item2.Replace("{0}",in_dict_config("VendorName").ToString)]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_DataEntry</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">[ExceptionMessage]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">[in_dict_config("Success_ LogTypeMessages").ToString.split(","c)(1)]</InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
