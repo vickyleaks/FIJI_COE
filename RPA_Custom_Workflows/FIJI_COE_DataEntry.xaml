@@ -1112,7 +1112,7 @@
                 </ui:Target>
               </ui:SetFocus.Target>
             </ui:SetFocus>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_19" Text="[in_str_customer_po]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_23" Text="[in_str_customer_po]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -1124,15 +1124,15 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_18">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_22">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_88">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_18" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_22" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -1756,13 +1756,13 @@
             </ui:InterruptibleWhile>
             <ui:CommentOut DisplayName="Comment Out: While condition for mapping" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_12">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,393" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,385" sap2010:WorkflowViewState.IdRef="Sequence_63">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:Matches BuilderPattern="(?:abc)+" sap:VirtualizedContainerService.HintSize="863,61" sap2010:WorkflowViewState.IdRef="Matches_4" Input="[in_str_shiplocation_to]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;abc&quot;,&quot;QuantifierFirstValue&quot;:&quot;+&quot;,&quot;QuantifierID&quot;:&quot;OOM&quot;,&quot;QuantifierName&quot;:&quot;At least one (1 or more)&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[in_dict_config(&quot;LocationRegexExpression&quot;).ToString.Replace(&quot;|&quot;,&quot;1&quot;)]" RegexOption="IgnoreCase, Compiled" Result="[ien_LocationMatches]">
+                  <ui:Matches BuilderPattern="(?:abc)+" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Matches_4" Input="[in_str_shiplocation_to]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;abc&quot;,&quot;QuantifierFirstValue&quot;:&quot;+&quot;,&quot;QuantifierID&quot;:&quot;OOM&quot;,&quot;QuantifierName&quot;:&quot;At least one (1 or more)&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[in_dict_config(&quot;LocationRegexExpression&quot;).ToString.Replace(&quot;|&quot;,&quot;1&quot;)]" RegexOption="IgnoreCase, Compiled" Result="[ien_LocationMatches]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1770,7 +1770,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:Matches>
-                  <ui:InterruptibleWhile Condition="[ien_LocationMatches.Count&gt;0 And int_ShipLocationIndex&lt;CInt(in_dict_config(&quot;LocationMatchesCounter&quot;))]" CurrentIndex="[int_ShipLocationIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="863,61" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                  <ui:InterruptibleWhile Condition="[ien_LocationMatches.Count&gt;0 And int_ShipLocationIndex&lt;CInt(in_dict_config(&quot;LocationMatchesCounter&quot;))]" CurrentIndex="[int_ShipLocationIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                     <ui:InterruptibleWhile.Body>
                       <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="827,4644" sap2010:WorkflowViewState.IdRef="Sequence_17">
                         <sap:WorkflowViewStateService.ViewState>
@@ -2161,7 +2161,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InterruptibleWhile>
-                  <If Condition="[bool_LocationDuplicate AndAlso Not(CBool(obj_PythonOutput))]" sap:VirtualizedContainerService.HintSize="863,61" sap2010:WorkflowViewState.IdRef="If_24">
+                  <If Condition="[bool_LocationDuplicate AndAlso Not(CBool(obj_PythonOutput))]" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="If_24">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2302,7 +2302,7 @@
                 </Sequence>
               </If.Then>
             </If>
-            <If sap2010:Annotation.AnnotationText="If Invalid location exist in singu output file, throw BE" Condition="[str_ShipLocationValue = str_MatchedLocation.Replace(&quot; &quot;,&quot;%&quot;)]" DisplayName="If Invalid location exist in singu output file, throw BE" sap:VirtualizedContainerService.HintSize="678,895" sap2010:WorkflowViewState.IdRef="If_11">
+            <If sap2010:Annotation.AnnotationText="If Invalid location exist in singu output file, throw BE" Condition="[str_ShipLocationValue = str_MatchedLocation.Replace(&quot; &quot;,&quot;%&quot;)]" DisplayName="If Invalid location exist in singu output file, throw BE" sap:VirtualizedContainerService.HintSize="817,895" sap2010:WorkflowViewState.IdRef="If_11">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -2352,7 +2352,7 @@
                 </Sequence>
               </If.Then>
             </If>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'page tab  Others'" sap:VirtualizedContainerService.HintSize="678,116" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'page tab  Others'" sap:VirtualizedContainerService.HintSize="817,116" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -2374,7 +2374,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <Assign sap:VirtualizedContainerService.HintSize="678,70" sap2010:WorkflowViewState.IdRef="Assign_48">
+            <Assign sap:VirtualizedContainerService.HintSize="817,70" sap2010:WorkflowViewState.IdRef="Assign_48">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[int_ReqDateIndex]</OutArgument>
               </Assign.To>
@@ -2382,7 +2382,7 @@
                 <InArgument x:TypeArguments="x:Int32">0</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(int_ReqDateIndex&gt;3 or in_str_requestdate.Replace(&quot;/&quot;,&quot;&quot;)=str_OracleRequestDate.Replace(&quot;/&quot;,&quot;&quot;))]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="678,707" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_7">
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(int_ReqDateIndex&gt;3 or in_str_requestdate.Replace(&quot;/&quot;,&quot;&quot;)=str_OracleRequestDate.Replace(&quot;/&quot;,&quot;&quot;))]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="817,707" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_7">
               <ui:InterruptibleDoWhile.Body>
                 <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="400,532" sap2010:WorkflowViewState.IdRef="Sequence_79">
                   <sap:WorkflowViewStateService.ViewState>
@@ -2428,7 +2428,7 @@
                 </Sequence>
               </ui:InterruptibleDoWhile.Body>
             </ui:InterruptibleDoWhile>
-            <If Condition="[int_ReqDateIndex&gt;3]" sap:VirtualizedContainerService.HintSize="678,767" sap2010:WorkflowViewState.IdRef="If_32">
+            <If Condition="[int_ReqDateIndex&gt;3]" sap:VirtualizedContainerService.HintSize="817,767" sap2010:WorkflowViewState.IdRef="If_32">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="441,491" sap2010:WorkflowViewState.IdRef="Sequence_80">
                   <sap:WorkflowViewStateService.ViewState>
@@ -2472,7 +2472,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="678,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="817,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0014").ToString.Replace("{0}",in_str_customer_po).Replace("{1}",in_str_shiplocation_to).Replace("{2}",in_str_requestdate)]</InArgument>
@@ -2481,7 +2481,7 @@
                 <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0014</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'page tab  Line Items'" sap:VirtualizedContainerService.HintSize="678,116" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'page tab  Line Items'" sap:VirtualizedContainerService.HintSize="817,116" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -2503,7 +2503,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <Assign sap:VirtualizedContainerService.HintSize="678,70" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign sap:VirtualizedContainerService.HintSize="817,70" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[int_po_counter]</OutArgument>
               </Assign.To>
@@ -2511,7 +2511,7 @@
                 <InArgument x:TypeArguments="x:Int32">0</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(bool_existing_po or bool_new_po or int_po_counter&gt;20)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="678,679" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(bool_existing_po or bool_new_po or int_po_counter&gt;20)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="817,679" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
               <ui:InterruptibleDoWhile.Body>
                 <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="400,504" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
@@ -2548,7 +2548,7 @@
                 </Sequence>
               </ui:InterruptibleDoWhile.Body>
             </ui:InterruptibleDoWhile>
-            <If Condition="[bool_existing_po]" sap:VirtualizedContainerService.HintSize="678,2259" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[bool_existing_po]" sap:VirtualizedContainerService.HintSize="817,2259" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
