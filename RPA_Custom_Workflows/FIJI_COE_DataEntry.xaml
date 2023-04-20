@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,15602</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,16831</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FIJI_COE_DataEntry_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="37">
@@ -54,7 +54,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="63">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -116,9 +116,10 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FIJI_COE_DataEntry" sap:VirtualizedContainerService.HintSize="975,15537" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FIJI_COE_DataEntry" sap:VirtualizedContainerService.HintSize="975,16766" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="bool_new_po" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_existing_po" />
@@ -136,6 +137,7 @@
       <Variable x:TypeArguments="x:Boolean" Name="bool_ValidCustomer" />
       <Variable x:TypeArguments="x:Object" Name="obj_PythonOutput" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_LocationDuplicate" />
+      <Variable x:TypeArguments="s:String[]" Default="[{&quot;Zero&quot;, &quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;, &quot;Four&quot;, &quot;Five&quot;, &quot;Six&quot;, &quot;Seven&quot;, &quot;Eight&quot;, &quot;Nine&quot;}]" Name="Arr_Numbers" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -151,13 +153,13 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0029</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'jp2launcher.exe Oracle'" sap:VirtualizedContainerService.HintSize="913,14990" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="77c0fc31f2be739d188340b2a7c556b2" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - *' /&gt;">
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'jp2launcher.exe Oracle'" sap:VirtualizedContainerService.HintSize="913,16219" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="77c0fc31f2be739d188340b2a7c556b2" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - *' /&gt;">
       <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="879,14834" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="879,16063" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="int_newOrderCounter" />
               <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ien_LocationMatches" />
@@ -1112,7 +1114,7 @@
                 </ui:Target>
               </ui:SetFocus.Target>
             </ui:SetFocus>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_23" Text="[in_str_customer_po]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="817,144" sap2010:WorkflowViewState.IdRef="TypeInto_33" Text="[in_str_customer_po]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -1124,15 +1126,15 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_22">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="817,61" sap2010:WorkflowViewState.IdRef="CommentOut_32">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,266" sap2010:WorkflowViewState.IdRef="Sequence_101">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_22" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'text  Customer PO'" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_32" Text="[Now.ToString(&quot;ddMMyyHHmmss&quot;)]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f8d96da8-ef94-4959-92cd-7cdc19bdc27a" InformativeScreenshot="6b7d1e360f46ac2e53ce4a1f59b8fd36" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Customer PO' role='text' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -1325,6 +1327,61 @@
                 <InArgument x:TypeArguments="x:Boolean">False</InArgument>
               </Assign.Value>
             </Assign>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="817,833" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[in_str_shiplocation_to.split(&quot; &quot;)]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="digit" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="544,700" sap2010:WorkflowViewState.IdRef="Sequence_97">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[IsNumeric(digit)]" sap:VirtualizedContainerService.HintSize="482,578" sap2010:WorkflowViewState.IdRef="If_34">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="400,302" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="character" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_52">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[character]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[Left(digit,digit.Length-1)+" "+Arr_Numbers(Cint(Right(digit,1)))]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_53">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[in_str_shiplocation_to]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[in_str_shiplocation_to+" "+character]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="400,113" sap2010:WorkflowViewState.IdRef="Sequence_96">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+            </ui:ForEach>
             <ui:Matches BuilderPattern="(?:abc)+" sap:VirtualizedContainerService.HintSize="817,69" sap2010:WorkflowViewState.IdRef="Matches_5" Input="[in_str_shiplocation_to]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;abc&quot;,&quot;QuantifierFirstValue&quot;:&quot;+&quot;,&quot;QuantifierID&quot;:&quot;OOM&quot;,&quot;QuantifierName&quot;:&quot;At least one (1 or more)&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[in_dict_config(&quot;LocationRegexExpression&quot;).ToString.Replace(&quot;|&quot;,&quot;1&quot;)]" RegexOption="IgnoreCase, Compiled" Result="[ien_LocationMatches]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1333,21 +1390,21 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:Matches>
-            <ui:InterruptibleWhile Condition="[ien_LocationMatches.Count&gt;0 And int_ShipLocationIndex&lt;CInt(in_dict_config(&quot;LocationMatchesCounter&quot;))]" CurrentIndex="[int_ShipLocationIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="817,3551" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+            <ui:InterruptibleWhile Condition="[ien_LocationMatches.Count&gt;0 And int_ShipLocationIndex&lt;CInt(in_dict_config(&quot;LocationMatchesCounter&quot;))]" CurrentIndex="[int_ShipLocationIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="817,3907" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
               <ui:InterruptibleWhile.Body>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="781,3376" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="781,3732" sap2010:WorkflowViewState.IdRef="Sequence_72">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="719,2766" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ien_LocationMatches]">
+                  <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="719,3122" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ien_LocationMatches]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="str:Match">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="str:Match" Name="MatchedLocation" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="683,2633" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="683,2989" sap2010:WorkflowViewState.IdRef="Sequence_70">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:Int32" Name="int_LocationTabIndex" />
                           </Sequence.Variables>
@@ -1364,10 +1421,10 @@
                               <InArgument x:TypeArguments="x:String">[MatchedLocation.ToString]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <If Condition="[str_IsFindPopUpExist.Contains(Left(MatchedLocation.ToString,MatchedLocation.ToString.Length-(int_ShipLocationIndex+1)).Replace(&quot; &quot;,&quot;%&quot;))]" sap:VirtualizedContainerService.HintSize="621,61" sap2010:WorkflowViewState.IdRef="If_25">
+                          <If Condition="[str_IsFindPopUpExist.Contains(Left(MatchedLocation.ToString,MatchedLocation.ToString.Length-(int_ShipLocationIndex+1)).Replace(&quot; &quot;,&quot;%&quot;))]" sap:VirtualizedContainerService.HintSize="621,417" sap2010:WorkflowViewState.IdRef="If_25">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>

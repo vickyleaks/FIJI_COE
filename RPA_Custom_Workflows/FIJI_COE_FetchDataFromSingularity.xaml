@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,8578</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,9287</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FIJI_COE_FetchDataFromSingularity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -140,7 +140,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FIJI_COE_FetchDataFromSingularity" sap:VirtualizedContainerService.HintSize="683,8513" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FIJI_COE_FetchDataFromSingularity" sap:VirtualizedContainerService.HintSize="683,8567" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="li_mailMessages" />
       <Variable x:TypeArguments="x:String" Name="str_dateLow" />
@@ -159,7 +159,7 @@
       <Variable x:TypeArguments="x:Int32" Name="int_ShiptoArriveIndex" />
       <Variable x:TypeArguments="x:Int32" Name="int_OrderIndex" />
       <Variable x:TypeArguments="x:Int32" Name="int_VendorNameRowIndex" />
-      <Variable x:TypeArguments="x:String" Name="strLocationToMapp" />
+      <Variable x:TypeArguments="x:String" Name="strCustomerID" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -204,7 +204,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <TryCatch sap2010:Annotation.AnnotationText="Reads Singu Ouput Sheet1" DisplayName="Reads Singu Ouput Sheet1" sap:VirtualizedContainerService.HintSize="621,92" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch sap2010:Annotation.AnnotationText="Reads Singu Ouput Sheet1" DisplayName="Try Catch: Reads Singu Ouput Sheet1" sap:VirtualizedContainerService.HintSize="621,92" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -456,7 +456,7 @@
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="621,70" sap2010:WorkflowViewState.IdRef="Assign_94">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[strLocationToMapp]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[strCustomerID]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(out_dt_singularity1(CInt(in_dict_config("SingularityVendorNameFieldIndex")))(2).ToString.Tolower, "[^a-zA-Z0-9]","")]</InArgument>
@@ -464,13 +464,19 @@
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="621,70" sap2010:WorkflowViewState.IdRef="Assign_95">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[strLocationToMapp]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[strCustomerID]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[If(strLocationToMapp.Contains(in_dict_config("LocationChefWHMapp").ToString),if(in_dict_config("ShipLocation").ToString.ToLower.Contains("ny"),strLocationToMapp+"ny",if(in_dict_config("ShipLocation").ToString.ToLower.Contains("md"),strLocationToMapp+"md",strLocationToMapp)),If(strLocationToMapp.Contains(in_dict_config("LocationMSWMapp").ToString),if(in_dict_config("ShipLocation").ToString.ToLower.Contains("commercial"),strLocationToMapp+"commercial",strLocationToMapp),strLocationToMapp))]</InArgument>
+        <InArgument x:TypeArguments="x:String">[If(strCustomerID.Contains(in_dict_config("LocationChefWHMapp").ToString),if(in_dict_config("ShipLocation").ToString.ToLower.Contains("ny"),strCustomerID+"ny",if(in_dict_config("ShipLocation").ToString.ToLower.Contains("md"),strCustomerID+"md",strCustomerID)),If(strCustomerID.Contains(in_dict_config("LocationMSWMapp").ToString),if(in_dict_config("ShipLocation").ToString.ToLower.Contains("commercial"),strCustomerID+"commercial",strCustomerID),strCustomerID))]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[in_dt_locationfile]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="621,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_9" LookupColumnName="[in_dict_config(&quot;LocationMappingCustomerNameColumn&quot;).ToString]" LookupValue="[strLocationToMapp]" RowIndex="[int_VendorNameRowIndex]" />
+    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Lookup Data Table: CustomerID" DataTable="[in_dt_locationfile]" DisplayName="Lookup Data Table: CustomerID" sap:VirtualizedContainerService.HintSize="621,332" sap2010:WorkflowViewState.IdRef="LookupDataTable_9" LookupColumnName="[in_dict_config(&quot;LocationMappingCustomerNameColumn&quot;).ToString]" LookupValue="[strCustomerID]" RowIndex="[int_VendorNameRowIndex]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LookupDataTable>
     <If Condition="[int_VendorNameRowIndex=-1]" sap:VirtualizedContainerService.HintSize="621,956" sap2010:WorkflowViewState.IdRef="If_26">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="441,601" sap2010:WorkflowViewState.IdRef="Sequence_81">
@@ -507,7 +513,7 @@
               <OutArgument x:TypeArguments="x:String">[ExceptionMessage]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["EX-LBM-NEDI-0024,"+strLocationToMapp]</InArgument>
+              <InArgument x:TypeArguments="x:String">["EX-LBM-NEDI-0024,"+strCustomerID]</InArgument>
             </Assign.Value>
           </Assign>
           <Throw DisplayName="Throw Business Exception" Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="379,97" sap2010:WorkflowViewState.IdRef="Throw_21" />
@@ -531,18 +537,19 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[out_dt_singularity1]" DisplayName="Lookup Order field exist in Data Table or not" sap:VirtualizedContainerService.HintSize="621,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_7" LookupColumnName="[in_dict_config(&quot;SingularityDescriptionColumn&quot;).ToString]" LookupValue="[in_dict_config(&quot;SingularityOrderField&quot;).ToString]" RowIndex="[int_OrderIndex]">
+    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Lookup Order field exist in Data Table or not" DataTable="[out_dt_singularity1]" DisplayName="Lookup Order field exist in Data Table or not" sap:VirtualizedContainerService.HintSize="621,103" sap2010:WorkflowViewState.IdRef="LookupDataTable_7" LookupColumnName="[in_dict_config(&quot;SingularityDescriptionColumn&quot;).ToString]" LookupValue="[in_dict_config(&quot;SingularityOrderField&quot;).ToString]" RowIndex="[int_OrderIndex]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LookupDataTable>
-    <If sap2010:Annotation.AnnotationText="If ORDER field exists in SinguOutputFile, Concatenate with PO" Condition="[Not(int_OrderIndex=-1)]" DisplayName="If ORDER field exists in SinguOutputFile, Concatenate with PO" sap:VirtualizedContainerService.HintSize="621,486" sap2010:WorkflowViewState.IdRef="If_24">
+    <If sap2010:Annotation.AnnotationText="If ORDER field exists in SinguOutputFile, Concatenate with PO" Condition="[Not(int_OrderIndex=-1)]" DisplayName="If ORDER field exists in SinguOutputFile, Concatenate with PO" sap:VirtualizedContainerService.HintSize="621,118" sap2010:WorkflowViewState.IdRef="If_24">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
@@ -565,40 +572,51 @@
         </Sequence>
       </If.Then>
     </If>
-    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Lookup VendorName column exist in Data Table or not" DataTable="[out_dt_singularity1]" DisplayName="Lookup VendorName column exist in Data Table or not" sap:VirtualizedContainerService.HintSize="621,103" sap2010:WorkflowViewState.IdRef="LookupDataTable_8" LookupColumnName="[in_dict_config(&quot;SingularityDescriptionColumn&quot;).ToString]" LookupValue="[in_dict_config(&quot;SingularityVendorNameColumn&quot;).ToString]" RowIndex="[int_OrderIndex]">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:LookupDataTable>
-    <If Condition="[Not(int_OrderIndex=-1)]" sap:VirtualizedContainerService.HintSize="621,455" sap2010:WorkflowViewState.IdRef="If_25">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,192" sap2010:WorkflowViewState.IdRef="Sequence_80">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="621,414" sap2010:WorkflowViewState.IdRef="CommentOut_13">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,326" sap2010:WorkflowViewState.IdRef="Sequence_83">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_90">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:Object">[in_dict_config("CustomerName")]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:Object">[out_dt_singularity1(int_OrderIndex)(2).ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
+          <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Lookup VendorName column exist in Data Table or not" DataTable="[out_dt_singularity1]" DisplayName="Lookup VendorName column exist in Data Table or not" sap:VirtualizedContainerService.HintSize="338,103" sap2010:WorkflowViewState.IdRef="LookupDataTable_8" LookupColumnName="[in_dict_config(&quot;SingularityDescriptionColumn&quot;).ToString]" LookupValue="[in_dict_config(&quot;SingularityVendorNameColumn&quot;).ToString]" RowIndex="[int_OrderIndex]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LookupDataTable>
+          <If Condition="[Not(int_OrderIndex=-1)]" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="If_25">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="400,192" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="338,70" sap2010:WorkflowViewState.IdRef="Assign_90">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Object">[in_dict_config("CustomerName")]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Object">[out_dt_singularity1(int_OrderIndex)(2).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
         </Sequence>
-      </If.Then>
-    </If>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
     <Assign DisplayName="Assign: Get Index of VendorProductCode" sap:VirtualizedContainerService.HintSize="621,70" sap2010:WorkflowViewState.IdRef="Assign_65">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[int_VendorCodeIndex]</OutArgument>
@@ -615,11 +633,11 @@
         <InArgument x:TypeArguments="x:Int32">[out_dt_singularity.Columns.IndexOf(in_dict_config("SingularityQuantityColumn").ToString)]</InArgument>
       </Assign.Value>
     </Assign>
-    <If sap2010:Annotation.AnnotationText="Checks if Vendor Product Code and Quantity Index are present in Output of singularity or not" Condition="[int_QuantityIndex=-1 or int_VendorCodeIndex=-1]" sap:VirtualizedContainerService.HintSize="621,133" sap2010:WorkflowViewState.IdRef="If_17">
+    <If sap2010:Annotation.AnnotationText="Checks if Vendor Product Code and Quantity Index are present in Output of singularity or not" Condition="[int_QuantityIndex=-1 or int_VendorCodeIndex=-1]" sap:VirtualizedContainerService.HintSize="621,906" sap2010:WorkflowViewState.IdRef="If_17">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -668,7 +686,7 @@
     <ui:IsMatch DisplayName="Is Match" sap:VirtualizedContainerService.HintSize="621,69" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[in_dict_config(&quot;ShipLocation&quot;).ToString]" IsBuilderTabModified="False" Pattern="[in_dict_config(&quot;LocationRegexExpression&quot;).ToString.Replace(&quot;|&quot;,&quot;1&quot;)]" RegexOption="IgnoreCase, Compiled" Result="[bool_locationFlag]" />
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="621,61" sap2010:WorkflowViewState.IdRef="CommentOut_11">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="642,915" sap2010:WorkflowViewState.IdRef="Sequence_75">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,183" sap2010:WorkflowViewState.IdRef="Sequence_75">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

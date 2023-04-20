@@ -221,7 +221,7 @@
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;&quot;,&quot;&quot;,&quot;&quot;,in_Config(&quot;PONumber&quot;).ToString,in_Config(&quot;POType&quot;).ToString,&quot;&quot;,in_Config(&quot;RequestDate&quot;).ToString,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername,in_Config(&quot;BotStatusSuccess&quot;),&quot;&quot;,&quot;&quot;,in_str_startdatetime,in_str_enddatetime}]" DataTable="[inout_dt_SummaryFile]" DisplayName="Adding PO details into summary data table" sap:VirtualizedContainerService.HintSize="482,195" sap2010:WorkflowViewState.IdRef="AddDataRow_9" />
-                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="FileName" LookupValue="[Path.GetFileNameWithoutExtension(io_TransactionItem)]" RowIndex="[int_MailTableFileRowIndex]">
+                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="FileName" LookupValue="[Path.GetFileNameWithoutExtension(io_TransactionItem).split(&quot;_PO&quot;)(0)]" RowIndex="[int_MailTableFileRowIndex]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -237,7 +237,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:LookupDataTable>
-                  <If Condition="[int_MailTableFileRowIndex=-1 or int_MailTableMessageIDRowIndex=-1]" sap:VirtualizedContainerService.HintSize="482,782" sap2010:WorkflowViewState.IdRef="If_8">
+                  <If Condition="[If(int_MailTableFileRowIndex=-1,True,If(io_dt_MailStatusDataTable(int_MailTableFileRowIndex)(2).ToString.trim=&quot;&quot;,False,True))]" sap:VirtualizedContainerService.HintSize="482,782" sap2010:WorkflowViewState.IdRef="If_8">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -618,7 +618,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">330,661.333333333333 330,691.333333333333 210,691.333333333333 210,715.6</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="788,6199" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="200,192" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -634,13 +634,13 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence sap:VirtualizedContainerService.HintSize="688,5204" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                    <Sequence sap:VirtualizedContainerService.HintSize="606,5204" sap2010:WorkflowViewState.IdRef="Sequence_47">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_UploadFileIntoMinIO.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_UploadFileIntoMinIO.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_UploadFileIntoMinIO.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="544,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_UploadFileIntoMinIO.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="in_str_PythonScript">[in_Config("PythonScriptFilePath").ToString]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_str_BucketName">[in_Config("MinIOBucketName").ToString]</InArgument>
@@ -658,7 +658,7 @@
                           <InArgument x:TypeArguments="x:String" x:Key="in_str_DeleteFunctionName">[in_Config("DeletePythonFunctionName").ToString]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <Sequence sap:VirtualizedContainerService.HintSize="626,1962" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                      <Sequence sap:VirtualizedContainerService.HintSize="544,1962" sap2010:WorkflowViewState.IdRef="Sequence_81">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -682,7 +682,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:LookupDataTable>
-                        <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_8" LookupColumnName="FileName" LookupValue="[Path.GetFileNameWithoutExtension(io_TransactionItem)]" RowIndex="[int_MailTableFileRowIndex]">
+                        <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_8" LookupColumnName="FileName" LookupValue="[Path.GetFileNameWithoutExtension(io_TransactionItem).split(&quot;_PO&quot;)(0)]" RowIndex="[int_MailTableFileRowIndex]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -690,7 +690,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:LookupDataTable>
-                        <If Condition="[int_MailTableFileRowIndex=-1 or int_MailTableMessageIDRowIndex=-1]" sap:VirtualizedContainerService.HintSize="482,892" sap2010:WorkflowViewState.IdRef="If_20">
+                        <If Condition="[If(int_MailTableFileRowIndex=-1,True,If(io_dt_MailStatusDataTable(int_MailTableFileRowIndex)(2).ToString.trim=&quot;&quot;,False,True))]" sap:VirtualizedContainerService.HintSize="482,892" sap2010:WorkflowViewState.IdRef="If_20">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -742,9 +742,9 @@
                           </If.Else>
                         </If>
                       </Sequence>
-                      <ui:CommentOut DisplayName="Look at up sequence and below If condition" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="CommentOut_14">
+                      <ui:CommentOut DisplayName="Look at up sequence and below If condition" sap:VirtualizedContainerService.HintSize="544,61" sap2010:WorkflowViewState.IdRef="CommentOut_14">
                         <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,183" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="544,487" sap2010:WorkflowViewState.IdRef="Sequence_82">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -853,7 +853,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
-                      <If Condition="[If(io_TransactionItem.Contains(&quot;`&quot;),(File.Exists(in_Config(&quot;InputsFolderPath&quot;).ToString+Path.GetFileNameWithoutExtension(io_TransactionItem).Split(&quot;`&quot;)(1)+&quot;.pdf&quot;)),False)]" sap:VirtualizedContainerService.HintSize="626,547" sap2010:WorkflowViewState.IdRef="If_15">
+                      <If Condition="[If(io_TransactionItem.Contains(&quot;`&quot;),(File.Exists(in_Config(&quot;InputsFolderPath&quot;).ToString+Path.GetFileNameWithoutExtension(io_TransactionItem).Split(&quot;`&quot;)(1)+&quot;.pdf&quot;)),False)]" sap:VirtualizedContainerService.HintSize="544,547" sap2010:WorkflowViewState.IdRef="If_15">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -895,7 +895,7 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <If Condition="[io_TransactionItem.Contains(&quot;`&quot;)]" sap:VirtualizedContainerService.HintSize="626,547" sap2010:WorkflowViewState.IdRef="If_18">
+                      <If Condition="[io_TransactionItem.Contains(&quot;`&quot;)]" sap:VirtualizedContainerService.HintSize="544,547" sap2010:WorkflowViewState.IdRef="If_18">
                         <If.Then>
                           <Sequence sap:VirtualizedContainerService.HintSize="400,192" sap2010:WorkflowViewState.IdRef="Sequence_75">
                             <sap:WorkflowViewStateService.ViewState>
@@ -931,8 +931,8 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[str_SinguOutputFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="626,168" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[io_TransactionItem]" />
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
+                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[str_SinguOutputFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="544,168" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[io_TransactionItem]" />
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="544,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_config]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_config("SC-LM-0027").ToString.Replace("{0}",str_SinguOutputFilePath)]</InArgument>
@@ -941,7 +941,7 @@
                           <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0027</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="544,61" sap2010:WorkflowViewState.IdRef="CommentOut_7">
                         <ui:CommentOut.Body>
                           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="624,1161" sap2010:WorkflowViewState.IdRef="Sequence_36">
                             <sap:WorkflowViewStateService.ViewState>
@@ -1020,7 +1020,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
-                      <TryCatch sap2010:Annotation.AnnotationText="Take a screenshot of the current state of the screen to facilitate debugging." DisplayName="Try taking screenshot" sap:VirtualizedContainerService.HintSize="626,390" sap2010:WorkflowViewState.IdRef="TryCatch_20">
+                      <TryCatch sap2010:Annotation.AnnotationText="Take a screenshot of the current state of the screen to facilitate debugging." DisplayName="Try taking screenshot" sap:VirtualizedContainerService.HintSize="544,390" sap2010:WorkflowViewState.IdRef="TryCatch_20">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1053,7 +1053,7 @@
                           </Catch>
                         </TryCatch.Catches>
                       </TryCatch>
-                      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_BusinessException.Message.split(&quot;,&quot;)(0)]" sap:VirtualizedContainerService.HintSize="497,580" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_BusinessException.Message.split(&quot;,&quot;)(0)]" sap:VirtualizedContainerService.HintSize="544,580" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                         <Sequence x:Key="EX-LBM-NEDI-0011" sap:VirtualizedContainerService.HintSize="441,244" sap2010:WorkflowViewState.IdRef="Sequence_51">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1062,25 +1062,51 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                              </InArgument>
                               <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                               <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                               <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Missing_Singu_Columns").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Missing_Singu_Columns").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                <Literal x:TypeArguments="x:Boolean" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Missing_Singu_Columns&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Missing_Singu_Columns&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                <Literal x:TypeArguments="x:Boolean" Value="True" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1092,25 +1118,51 @@
                         </Sequence>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0012" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Missing_Singu_Rows").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Missing_Singu_Rows").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Missing_Singu_Rows&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Missing_Singu_Rows&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1121,25 +1173,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0014" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Missing_Singu_Location").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Missing_Singu_Location").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Missing_Singu_Location&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Missing_Singu_Location&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1150,25 +1228,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0008" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Missing_Vendorcode").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Missing_Vendorcode").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Missing_Vendorcode&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Missing_Vendorcode&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1185,25 +1289,51 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                              </InArgument>
                               <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                               <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                               <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Invalid_Location").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Invalid_Location").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                <Literal x:TypeArguments="x:Boolean" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Invalid_Location&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Invalid_Location&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                <Literal x:TypeArguments="x:Boolean" Value="True" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[Save_ScreenShotPath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Save_ScreenShotPath" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1221,25 +1351,51 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                              </InArgument>
                               <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                               <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                               <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_ExistingPO").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_ExistingPO").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                <Literal x:TypeArguments="x:Boolean" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_ExistingPO&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_ExistingPO&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                <Literal x:TypeArguments="x:Boolean" Value="True" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputfilepath}]</InArgument>
+                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputfilepath}" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1257,25 +1413,51 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                              </InArgument>
                               <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                               <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                               <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Invalid_Orderitems").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Invalid_Orderitems").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                <Literal x:TypeArguments="x:Boolean" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Invalid_Orderitems&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Invalid_Orderitems&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                <Literal x:TypeArguments="x:Boolean" Value="True" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,Save_ScreenShotPath,str_SinguInputFilepath}]</InArgument>
+                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,Save_ScreenShotPath,str_SinguInputFilepath}" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1294,25 +1476,51 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                              </InArgument>
                               <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                               <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                               <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Invalid_Orderitems").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Invalid_Orderitems").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                <Literal x:TypeArguments="x:Boolean" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Invalid_Orderitems&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Invalid_Orderitems&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                <Literal x:TypeArguments="x:Boolean" Value="True" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                               <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                              </InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1324,25 +1532,51 @@
                         </Sequence>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0021" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_OverWeightExceed").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_OverWeightExceed").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_OverWeightExceed&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_OverWeightExceed&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1353,25 +1587,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0022" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_35" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_SheetdataMissed").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_SheetdataMissed").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_SheetdataMissed&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_SheetdataMissed&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1382,25 +1642,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0023" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Location_Mapping").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Location_Mapping").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Location_Mapping&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Location_Mapping&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1411,25 +1697,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0024" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_VendorName_Missed").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_VendorName_Missed").ToString.Split(";"c)(1).Replace("{0}",in_BusinessException.Message.Split(","c)(1)) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_VendorName_Missed&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_VendorName_Missed&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_BusinessException.Message.Split(&quot;,&quot;c)(1)) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1440,25 +1752,51 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0025" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_38" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
                             <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                             <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                             <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">False</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_ShipToDateMissed").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_ShipToDateMissed").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_ShipToDateMissed&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_ShipToDateMissed&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                             <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Business").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("BusinessNotificationMailsFrom").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("BusinessNotificationMailsCC").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("BusinessNotificationMailsTo").ToString]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}]</InArgument>
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,str_SinguInputFilepath,Save_ScreenShotPath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1468,7 +1806,7 @@
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:InvokeWorkflowFile>
                       </Switch>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="544,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_config]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_config("SC-LM-0024").ToString.Replace("{0}",in_Config("BusinessNotificationMailsTo").ToString)]</InArgument>
@@ -1550,7 +1888,7 @@
                   <av:Size x:Key="ShapeSize">200,177</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="200,177" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="932,7634" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="QueueRetry" />
                   <Variable x:TypeArguments="x:String" Name="ScreenshotPath" />
@@ -1563,7 +1901,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:LogMessage DisplayName="Log Message (Consecutive exceptions)" sap:VirtualizedContainerService.HintSize="870,101" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Consecutive system exception counter is &quot; + io_ConsecutiveSystemExceptions.ToString + &quot;.&quot;]" />
-                <If Condition="[Cint(in_Config(&quot;SystemExceptionRetries&quot;)) &gt; io_RetryCounter and CBool(in_Config(&quot;IsSystemException&quot;))]" sap:VirtualizedContainerService.HintSize="870,5459" sap2010:WorkflowViewState.IdRef="If_11">
+                <If Condition="[Cint(in_Config(&quot;SystemExceptionRetries&quot;)) &gt; io_RetryCounter and CBool(in_Config(&quot;IsSystemException&quot;))]" sap:VirtualizedContainerService.HintSize="870,5917" sap2010:WorkflowViewState.IdRef="If_11">
                   <If.Then>
                     <Sequence sap:VirtualizedContainerService.HintSize="400,192" sap2010:WorkflowViewState.IdRef="Sequence_44">
                       <sap:WorkflowViewStateService.ViewState>
@@ -1582,7 +1920,7 @@
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="788,5104" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                    <Sequence sap:VirtualizedContainerService.HintSize="788,5562" sap2010:WorkflowViewState.IdRef="Sequence_45">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1622,17 +1960,17 @@
                           <InArgument x:TypeArguments="x:String" x:Key="in_str_DeleteFunctionName">[in_Config("DeletePythonFunctionName").ToString]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="726,4600" sap2010:WorkflowViewState.IdRef="TryCatch_15">
+                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="726,5058" sap2010:WorkflowViewState.IdRef="TryCatch_15">
                         <TryCatch.Try>
-                          <Sequence sap:VirtualizedContainerService.HintSize="688,4363" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                          <Sequence sap:VirtualizedContainerService.HintSize="688,4821" sap2010:WorkflowViewState.IdRef="Sequence_49">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <If Condition="[in_Config(&quot;PONumber&quot;).ToString&lt;&gt;&quot;&quot; and in_Config(&quot;RequestDate&quot;).ToString &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="626,1952" sap2010:WorkflowViewState.IdRef="If_14">
+                            <If Condition="[in_Config(&quot;PONumber&quot;).ToString&lt;&gt;&quot;&quot; and in_Config(&quot;RequestDate&quot;).ToString &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="626,2410" sap2010:WorkflowViewState.IdRef="If_14">
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="544,1676" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                <Sequence sap:VirtualizedContainerService.HintSize="544,2134" sap2010:WorkflowViewState.IdRef="Sequence_66">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1647,25 +1985,25 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                   </ui:AddDataRow>
-                                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="lookup MessageID from MailStatus Datatable" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,103" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnName="MessageID" LookupValue="[Path.GetFileName(io_TransactionItem).Split(&quot;`&quot;)(0)]" RowIndex="[int_MailTableMessageIDRowIndex]">
+                                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="lookup MessageID from MailStatus Datatable" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,332" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnName="MessageID" LookupValue="[Path.GetFileName(io_TransactionItem).Split(&quot;`&quot;)(0)]" RowIndex="[int_MailTableMessageIDRowIndex]">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                   </ui:LookupDataTable>
-                                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="lookup Filename from MailStatus Datatable" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,103" sap2010:WorkflowViewState.IdRef="LookupDataTable_6" LookupColumnName="FileName" LookupValue="[Path.GetFileName(io_TransactionItem).Split(&quot;`&quot;)(0).Replace(&quot;LESSTHAN&quot;,&quot;&lt;&quot;).Replace(&quot;GREATERTHAN&quot;,&quot;&gt;&quot;)]" RowIndex="[int_MailTableFileRowIndex]">
+                                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="lookup Filename from MailStatus Datatable" DataTable="[io_dt_MailStatusDataTable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,332" sap2010:WorkflowViewState.IdRef="LookupDataTable_6" LookupColumnName="FileName" LookupValue="[Path.GetFileNameWithoutExtension(io_TransactionItem).split(&quot;_PO&quot;)(0)]" RowIndex="[int_MailTableFileRowIndex]">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                   </ui:LookupDataTable>
-                                  <If Condition="[int_MailTableFileRowIndex=-1 or int_MailTableMessageIDRowIndex=-1]" DisplayName="If " sap:VirtualizedContainerService.HintSize="482,1002" sap2010:WorkflowViewState.IdRef="If_10">
+                                  <If Condition="[If(int_MailTableFileRowIndex=-1,True,If(io_dt_MailStatusDataTable(int_MailTableFileRowIndex)(2).ToString.trim=&quot;&quot;,False,True))]" DisplayName="If " sap:VirtualizedContainerService.HintSize="482,1002" sap2010:WorkflowViewState.IdRef="If_10">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1854,25 +2192,51 @@
                               <Switch.Default>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                                    </InArgument>
                                     <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                                     <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                                     <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">True</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_System_Exception").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_System_Exception").ToString.Split(";"c)(1).Replace("{0}",in_SystemException.Message) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                      <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_System_Exception&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_System_Exception&quot;).ToString.Split(&quot;;&quot;c)(1).Replace(&quot;{0}&quot;,in_SystemException.Message) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                      <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                    </InArgument>
                                     <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                                     <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Application").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("ApplicationExceptionMailsFrom").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("ApplicationExceptionMailsCC").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("ApplicationExceptionMailsTo").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Application&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsFrom&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsCC&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsTo&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                                    </InArgument>
                                     <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                                    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,Save_ScreenShotPath,str_SinguInputFilepath}]</InArgument>
+                                    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                      <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{str_SinguOutputFilePath,Save_ScreenShotPath,str_SinguInputFilepath}" />
+                                    </InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1890,25 +2254,51 @@
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">[in_Config("MailOperationType").ToString.Split(","c)(1)]</InArgument>
+                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                                    </InArgument>
                                     <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
                                     <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
                                     <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">True</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">[in_Config("Email_Body_Multiple_Popups").ToString.Split(";"c)(0) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Email_Body_Multiple_Popups").ToString.Split(";"c)(1) &amp; "&lt;BR&gt;" &amp; "&lt;BR&gt;" &amp; in_Config("Mail_Signature").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">[in_Config("MailRecepientsType").ToString.Split(";"c)(0)]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">True</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                                      <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_Multiple_Popups&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_Multiple_Popups&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                                      <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                    </InArgument>
                                     <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
                                     <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Config("Email_Subject_Application").ToString.Replace("Process Name",in_Config("logF_BusinessProcessName").ToString)]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">[in_Config("ApplicationExceptionMailsFrom").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_Config("ApplicationExceptionMailsCC").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_Config("ApplicationExceptionMailsTo").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Application&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsFrom&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsCC&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ApplicationExceptionMailsTo&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                                    </InArgument>
                                     <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
-                                    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                                    <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                                      <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputFilepath}" />
+                                    </InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">

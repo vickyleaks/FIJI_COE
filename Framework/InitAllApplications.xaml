@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,938</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -87,7 +87,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="441,772" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="441,873" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="int_mailcounter" />
     </Sequence.Variables>
@@ -99,21 +99,11 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;SC-LM-0029&quot;).ToString.Replace(&quot;{0}&quot;,&quot;InitAllApplications.xaml&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-          <Literal x:TypeArguments="x:String">InitAllApplications</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-          <Literal x:TypeArguments="x:String">Info</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-          <Literal x:TypeArguments="x:String">SC-LM-0029</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0029").ToString.Replace("{0}","InitAllApplications.xaml")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">InitAllApplications</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">Info</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0029</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
@@ -125,30 +115,50 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0007</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FIJI_COE_OracleLogin.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_OracleLogin.xaml">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="379,61" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="441,244" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FIJI_COE_OracleLogin.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_OracleLogin.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_config]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_int_mailcounter">[int_mailcounter]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">[in_tuple_config]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_config]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_mailcounter">[int_mailcounter]</InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">[in_tuple_config]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_mailcounter">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_mailcounter" />
+        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" ExpressionText="in_tuple_config" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;SC-LM-0030&quot;).ToString.Replace(&quot;{0}&quot;,&quot;InitAllApplications.xaml&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-          <Literal x:TypeArguments="x:String">InitAllApplications</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-          <Literal x:TypeArguments="x:String">Info</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-          <Literal x:TypeArguments="x:String">SC-LM-0030</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0030").ToString.Replace("{0}","InitAllApplications.xaml")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">InitAllApplications</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">Info</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0030</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
