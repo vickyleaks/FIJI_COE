@@ -12,7 +12,7 @@
   <sap:VirtualizedContainerService.HintSize>1530,5135</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FIJI_COE_LineItemsEntry_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="70">
+    <scg:List x:TypeArguments="x:String" Capacity="36">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -52,7 +52,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="104">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="53">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -117,6 +117,7 @@
       <Variable x:TypeArguments="x:String" Name="str_quantity_selector_number" />
       <Variable x:TypeArguments="x:String" Name="str_orderitem_selector_number" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_TransactionCompleteExist" />
+      <Variable x:TypeArguments="x:String" Name="SaveScreenshotPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -130,7 +131,7 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1444,4752" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1444,4753" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="Index" />
               <Variable x:TypeArguments="x:String" Name="ExceptionMessage" />
@@ -197,7 +198,7 @@
                 <InArgument x:TypeArguments="x:String">[str_quantity_selector_number.Replace("VTextField","")]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" CurrentIndex="[Index]" DisplayName="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" sap:VirtualizedContainerService.HintSize="1382,3164" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_li_orderItems]">
+            <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" CurrentIndex="[Index]" DisplayName="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" sap:VirtualizedContainerService.HintSize="1382,3165" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_li_orderItems]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
@@ -697,7 +698,7 @@
                                                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                                             </scg:Dictionary>
                                                           </sap:WorkflowViewStateService.ViewState>
-                                                          <Assign sap:VirtualizedContainerService.HintSize="523,70" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                          <Assign sap:VirtualizedContainerService.HintSize="582,70" sap2010:WorkflowViewState.IdRef="Assign_12">
                                                             <Assign.To>
                                                               <OutArgument x:TypeArguments="x:Int32">[int_popupCounter]</OutArgument>
                                                             </Assign.To>
@@ -705,7 +706,7 @@
                                                               <InArgument x:TypeArguments="x:Int32">[int_popupCounter + 1]</InArgument>
                                                             </Assign.Value>
                                                           </Assign>
-                                                          <If sap2010:Annotation.AnnotationText="If: Multiple popups action failed" Condition="[int_popupCounter &gt; 10]" DisplayName="If: Multiple popups action failed" sap:VirtualizedContainerService.HintSize="523,874" sap2010:WorkflowViewState.IdRef="If_4">
+                                                          <If sap2010:Annotation.AnnotationText="If: Multiple popups action failed" Condition="[int_popupCounter &gt; 10]" DisplayName="If: Multiple popups action failed" sap:VirtualizedContainerService.HintSize="582,1414" sap2010:WorkflowViewState.IdRef="If_4">
                                                             <sap:WorkflowViewStateService.ViewState>
                                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -714,14 +715,60 @@
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>
                                                             <If.Then>
-                                                              <Sequence sap:VirtualizedContainerService.HintSize="441,455" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                                              <Sequence sap:VirtualizedContainerService.HintSize="500,995" sap2010:WorkflowViewState.IdRef="Sequence_13">
                                                                 <sap:WorkflowViewStateService.ViewState>
                                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                                                   </scg:Dictionary>
                                                                 </sap:WorkflowViewStateService.ViewState>
-                                                                <Assign sap:VirtualizedContainerService.HintSize="379,70" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                                                <TryCatch sap2010:Annotation.AnnotationText="Take a screenshot of the current state of the screen to facilitate debugging." DisplayName="Try taking screenshot" sap:VirtualizedContainerService.HintSize="438,390" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                  <TryCatch.Try>
+                                                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                                                                      <ui:InvokeWorkflowFile.Arguments>
+                                                                        <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[in_dict_config("ExceptionScreenShotFolderPath").ToString]</InArgument>
+                                                                        <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[SaveScreenshotPath]</InOutArgument>
+                                                                      </ui:InvokeWorkflowFile.Arguments>
+                                                                      <sap:WorkflowViewStateService.ViewState>
+                                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                                        </scg:Dictionary>
+                                                                      </sap:WorkflowViewStateService.ViewState>
+                                                                    </ui:InvokeWorkflowFile>
+                                                                  </TryCatch.Try>
+                                                                  <TryCatch.Catches>
+                                                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                                                      <sap:WorkflowViewStateService.ViewState>
+                                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                        </scg:Dictionary>
+                                                                      </sap:WorkflowViewStateService.ViewState>
+                                                                      <ActivityAction x:TypeArguments="s:Exception">
+                                                                        <ActivityAction.Argument>
+                                                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
+                                                                        </ActivityAction.Argument>
+                                                                        <ui:LogMessage DisplayName="Log message (Screenshot not taken)" sap:VirtualizedContainerService.HintSize="200,61" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Failed to take screenshot: &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source+&quot; At Source: &quot;+Exception.Source]" />
+                                                                      </ActivityAction>
+                                                                    </Catch>
+                                                                  </TryCatch.Catches>
+                                                                </TryCatch>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="438,70" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:Object">[in_dict_config("ExpScreenshotPath")]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[SaveScreenshotPath]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="438,70" sap2010:WorkflowViewState.IdRef="Assign_11">
                                                                   <Assign.To>
                                                                     <OutArgument x:TypeArguments="x:String">[ExceptionMessage]</OutArgument>
                                                                   </Assign.To>
@@ -729,7 +776,7 @@
                                                                     <InArgument x:TypeArguments="x:String">EX-LAM-NEDI-0009</InArgument>
                                                                   </Assign.Value>
                                                                 </Assign>
-                                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke_Log Wrapper" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
+                                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke_Log Wrapper" sap:VirtualizedContainerService.HintSize="438,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
                                                                   <ui:InvokeWorkflowFile.Arguments>
                                                                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
                                                                     <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_Tuple_Config(ExceptionMessage).Item2]</InArgument>
@@ -744,7 +791,7 @@
                                                                     </scg:Dictionary>
                                                                   </sap:WorkflowViewStateService.ViewState>
                                                                 </ui:InvokeWorkflowFile>
-                                                                <Throw Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="379,61" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                                                                <Throw Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="438,61" sap2010:WorkflowViewState.IdRef="Throw_4" />
                                                               </Sequence>
                                                             </If.Then>
                                                             <If.Else>
@@ -1356,7 +1403,7 @@
                                     <av:Size x:Key="ShapeSize">200,90</av:Size>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Sequence sap:VirtualizedContainerService.HintSize="441,556" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                <Sequence sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>

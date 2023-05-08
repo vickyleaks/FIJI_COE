@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,9287</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,10633</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FIJI_COE_FetchDataFromSingularity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -140,7 +140,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FIJI_COE_FetchDataFromSingularity" sap:VirtualizedContainerService.HintSize="683,8567" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FIJI_COE_FetchDataFromSingularity" sap:VirtualizedContainerService.HintSize="683,10568" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="li_mailMessages" />
       <Variable x:TypeArguments="x:String" Name="str_dateLow" />
@@ -336,13 +336,13 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For Each: lookup Singularity row fields from output file" DisplayName="For Each: lookup Singularity row fields from output file" sap:VirtualizedContainerService.HintSize="621,92" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_dict_config(&quot;SingularityFields&quot;).ToString.Split(&quot;,&quot;c)]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For Each: lookup Singularity row fields from output file" DisplayName="For Each: lookup Singularity row fields from output file" sap:VirtualizedContainerService.HintSize="621,1725" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_dict_config(&quot;SingularityFields&quot;).ToString.Split(&quot;,&quot;c)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="585,1450" sap2010:WorkflowViewState.IdRef="Sequence_61">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="585,1560" sap2010:WorkflowViewState.IdRef="Sequence_61">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="int_RowIndex" />
             </Sequence.Variables>
@@ -352,7 +352,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[out_dt_singularity1]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="523,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_5" LookupColumnName="[in_dict_config(&quot;SingularityDescriptionColumn&quot;).ToString]" LookupValue="[in_dict_config(currentItem).ToString]" RowIndex="[int_RowIndex]" />
-            <If sap2010:Annotation.AnnotationText="If: Any row field is missing in Singularity output, Throw Exception" Condition="[int_RowIndex=-1]" DisplayName="If: Any row field is missing in Singularity output, Throw Exception" sap:VirtualizedContainerService.HintSize="523,987" sap2010:WorkflowViewState.IdRef="If_18">
+            <If sap2010:Annotation.AnnotationText="If: Any row field is missing in Singularity output, Throw Exception" Condition="[int_RowIndex=-1]" DisplayName="If: Any row field is missing in Singularity output, Throw Exception" sap:VirtualizedContainerService.HintSize="523,1097" sap2010:WorkflowViewState.IdRef="If_18">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -361,7 +361,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="441,601" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                <Sequence sap:VirtualizedContainerService.HintSize="441,711" sap2010:WorkflowViewState.IdRef="Sequence_59">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -398,6 +398,14 @@
                       <InArgument x:TypeArguments="x:String">["EX-LBM-NEDI-0012,"+in_dict_config(currentItem).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="379,70" sap2010:WorkflowViewState.IdRef="Assign_99">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[in_dict_config("PONumber")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[if(in_dict_config.ContainsKey("SingularityPurchaseOrderFieldIndex"),if(CInt(in_dict_config("SingularityPurchaseOrderFieldIndex"))=-1,"",String.Join("",out_dt_singularity1(CInt(in_dict_config("SingularityPurchaseOrderFieldIndex")))(2).ToString.Replace("[","").Replace("'","").Replace("]","").Replace(".","").split(" "c))),"")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
                   <Throw DisplayName="Throw Business Exception" Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="379,97" sap2010:WorkflowViewState.IdRef="Throw_15" />
                 </Sequence>
               </If.Then>
@@ -424,7 +432,7 @@
       </ui:ForEach.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
@@ -546,10 +554,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LookupDataTable>
-    <If sap2010:Annotation.AnnotationText="If ORDER field exists in SinguOutputFile, Concatenate with PO" Condition="[Not(int_OrderIndex=-1)]" DisplayName="If ORDER field exists in SinguOutputFile, Concatenate with PO" sap:VirtualizedContainerService.HintSize="621,118" sap2010:WorkflowViewState.IdRef="If_24">
+    <If sap2010:Annotation.AnnotationText="If ORDER field exists in SinguOutputFile, Concatenate with PO" Condition="[Not(int_OrderIndex=-1)]" DisplayName="If ORDER field exists in SinguOutputFile, Concatenate with PO" sap:VirtualizedContainerService.HintSize="621,486" sap2010:WorkflowViewState.IdRef="If_24">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
@@ -566,7 +574,7 @@
               <OutArgument x:TypeArguments="x:Object">[in_dict_config("PONumber")]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:Object">[out_dt_singularity1(int_OrderIndex)(2).ToString + in_dict_config("PONumber").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:Object">[out_dt_singularity1(int_OrderIndex)(2).ToString+"-" + in_dict_config("PONumber").ToString]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>
