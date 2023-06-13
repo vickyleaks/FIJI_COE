@@ -1,0 +1,436 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="FIJ_NonEDI_ExcelUpload" this:FIJ_NonEDI_ExcelUpload.in_str_SubFolder="General/03. Program Delivery/02. Process Automation Delivery/Fiji water/2 .Supply Chain , Ops , Log, CS/104. Non EDI Customer Order Entry OCR/MappingFiles" this:FIJ_NonEDI_ExcelUpload.in_str_Query="FIJI_NonEDI_OCR_CustomerIDMappingFile 2.xlsx" this:FIJ_NonEDI_ExcelUpload.in_str_ToBeDownloadFilePath="D:\RPA\FIJI_NonEDI_COE(OCR)\MappingFiles\FIJI_NonEDI_OCR_CustomerIDMappingFile - Copy (2).xlsm" this:FIJ_NonEDI_ExcelUpload.in_str_UploadORDownload="download" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointTenantID="57fe7bb5-e382-4498-88fe-5c50d256f735" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointApplicationID="965c7e2f-a8cd-485c-bd40-d8dc2aef883a" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointApplicationSecret="YBJ8Q~ZJwsq4FPhX97VvhAoB4OPUVFk5DOnPgasn" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointSiteURL="https://wonderfulco.sharepoint.com/sites/GRP_TWCRPA804" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointDriveName="Documents" this:FIJ_NonEDI_ExcelUpload.in_str_SharepointFileSheetName="CustomerIDMapping" this:FIJ_NonEDI_ExcelUpload.in_str_UploadingValue="Temp" this:FIJ_NonEDI_ExcelUpload.in_bln_DownloadSheet="True" this:FIJ_NonEDI_ExcelUpload.in_str_ToBeDownloadSheetName="CustomerIDMapping" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mg="clr-namespace:Microsoft.Graph;assembly=Microsoft.Graph" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uma="clr-namespace:UiPath.MicrosoftOffice365.Activities;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umae="clr-namespace:UiPath.MicrosoftOffice365.Activities.Excel;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umaf="clr-namespace:UiPath.MicrosoftOffice365.Activities.Files;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_str_SubFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_Query" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_ToBeDownloadFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointUploadFile" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_UploadORDownload" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointTenantID" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointApplicationID" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointApplicationSecret" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointSiteURL" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointDriveName" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SharepointFileSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_UploadingValue" Type="InArgument(x:String)" />
+    <x:Property Name="in_bln_DownloadSheet" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_str_ToBeDownloadSheetName" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:FIJ_NonEDI_ExcelUpload.in_Config>
+    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+  </this:FIJ_NonEDI_ExcelUpload.in_Config>
+  <this:FIJ_NonEDI_ExcelUpload.in_str_SharepointUploadFile>
+    <InArgument x:TypeArguments="x:String" />
+  </this:FIJ_NonEDI_ExcelUpload.in_str_SharepointUploadFile>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1240,3009</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>FIJ_NonEDI_ExcelUpload_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="41">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>Microsoft.Graph</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Excel</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="FIJ_NonEDI_ExcelUpload" sap:VirtualizedContainerService.HintSize="718,2944" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mg:DriveItem" Name="DriveItem" />
+      <Variable x:TypeArguments="mg:DriveItem[]" Name="Arr_DriveItems" />
+      <Variable x:TypeArguments="x:String" Name="variable1" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_SharepointFile" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uma:Office365ApplicationScope CertificateAsBase64="{x:Null}" CertificatePassword="{x:Null}" ContinueOnError="{x:Null}" Password="{x:Null}" SecureApplicationSecret="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" ApplicationId="[in_str_SharepointApplicationID]" ApplicationSecret="[in_str_SharepointApplicationSecret]" AuthenticationType="ApplicationIdAndSecret" DisplayName="Microsoft Office 365 Scope" Environment="Global" sap:VirtualizedContainerService.HintSize="656,2822" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="UiPath" Services="Files, Shared" Tenant="[in_str_SharepointTenantID]" Timeout="60000">
+      <uma:Office365ApplicationScope.Body>
+        <ActivityAction x:TypeArguments="mg:GraphServiceClient">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="mg:GraphServiceClient" Name="ParentScope" />
+          </ActivityAction.Argument>
+          <Switch x:TypeArguments="x:String" DisplayName="Switch: Download or Upload file" Expression="[in_str_UploadORDownload.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="622,2726" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence x:Key="download" DisplayName="Downloading sharepoint file" sap:VirtualizedContainerService.HintSize="788,4748" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="IsFileExist" />
+                <Variable x:TypeArguments="x:Boolean" Name="IsDirectoryExist" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="726,101" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;O365 connected succesfuly&quot;]" />
+              <Assign sap:VirtualizedContainerService.HintSize="726,70" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[in_str_SubFolder]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_str_SubFolder]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <TryCatch sap2010:Annotation.AnnotationText="Try Catch: Retreive data from sharepoint" DisplayName="Try Catch: Retreive data from sharepoint" sap:VirtualizedContainerService.HintSize="726,4375" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch.Try>
+                  <Sequence sap:VirtualizedContainerService.HintSize="688,4107" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <umaf:FindFilesAndFolders DriveMetadata="{x:Null}" DisplayName="Find Files And Folders" DriveName="[in_str_SharepointDriveName]" First="[DriveItem]" sap:VirtualizedContainerService.HintSize="626,95" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_1" Query="[in_str_Query]" Results="[Arr_DriveItems]" SiteUrl="[in_str_SharepointSiteURL]" Subfolder="[in_str_SubFolder]" />
+                    <If Condition="[in_bln_DownloadSheet]" DisplayName="If: Download sheet or workbook?" sap:VirtualizedContainerService.HintSize="626,3850" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="544,3282" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Int32" Name="int_RowIndex" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <umae:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_SharepointFile]" DisplayName="Reads Sharepoint file " sap:VirtualizedContainerService.HintSize="482,190" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[in_str_SharepointFileSheetName]" ValuesType="Values" Workbook="[DriveItem]" />
+                          <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Sort Data Table: Descending order to get null values in the last" ColumnIndex="[1]" DataTable="[dt_SharepointFile]" DisplayName="Sort Data Table: Descending order to get null values in the last" sap:VirtualizedContainerService.HintSize="482,131" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" OutputDataTable="[dt_SharepointFile]" SortOrder="Descending">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:SortDataTable>
+                          <umae:WriteRange sap2010:Annotation.AnnotationText="Writes the datatable in sharepoint" DataTable="[dt_SharepointFile]" DisplayName="Writes the datatable in sharepoint" sap:VirtualizedContainerService.HintSize="482,221" sap2010:WorkflowViewState.IdRef="WriteRange_3" IncludeHeaders="True" SheetName="[in_str_SharepointFileSheetName]" StartingCell="A1" Workbook="[DriveItem]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </umae:WriteRange>
+                          <ui:LookupDataTable CellValue="{x:Null}" LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Lookup null value in data table&#xA;" DataTable="[dt_SharepointFile]" DisplayName="Lookup null value in data table" sap:VirtualizedContainerService.HintSize="482,343" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnIndex="[1]" RowIndex="[int_RowIndex]">
+                            <ui:LookupDataTable.LookupValue>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ui:LookupDataTable.LookupValue>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LookupDataTable>
+                          <If sap2010:Annotation.AnnotationText="If Null value didn't find apply white color for all cells, else apply yellow to null cells" Condition="[int_RowIndex=-1]" DisplayName="If Null value didn't find apply white color for all cells, else apply yellow to null cells" sap:VirtualizedContainerService.HintSize="482,1414" sap2010:WorkflowViewState.IdRef="If_2">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="400,434" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <umae:SetRangeColor sap2010:Annotation.AnnotationText="Set Range Color: white" Color="[System.Drawing.Color.White]" DisplayName="Set Range Color: white" sap:VirtualizedContainerService.HintSize="338,312" sap2010:WorkflowViewState.IdRef="SetRangeColor_4" Range="[&quot;A2:B&quot;+(dt_SharepointFile.RowCount+1).ToString]" SheetName="[in_str_SharepointFileSheetName]" Workbook="[DriveItem]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </umae:SetRangeColor>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="400,786" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <umae:SetRangeColor sap2010:Annotation.AnnotationText="Set Range Color: white" Color="[System.Drawing.Color.White]" DisplayName="Set Range Color: white" sap:VirtualizedContainerService.HintSize="338,312" sap2010:WorkflowViewState.IdRef="SetRangeColor_2" Range="[&quot;A2:B&quot;+(int_RowIndex+1).ToString]" SheetName="[in_str_SharepointFileSheetName]" Workbook="[DriveItem]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </umae:SetRangeColor>
+                                <umae:SetRangeColor sap2010:Annotation.AnnotationText="Set Range Color: yellow" Color="[System.Drawing.Color.Yellow]" DisplayName="Set Range Color: yellow" sap:VirtualizedContainerService.HintSize="338,312" sap2010:WorkflowViewState.IdRef="SetRangeColor_3" Range="[&quot;A&quot;+(int_RowIndex+2).ToString+&quot;:B&quot;+(dt_SharepointFile.RowCount+1).ToString]" SheetName="[in_str_SharepointFileSheetName]" Workbook="[DriveItem]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </umae:SetRangeColor>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <umae:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_SharepointFile]" DisplayName="Reads sharepoint file" sap:VirtualizedContainerService.HintSize="482,190" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="[in_str_SharepointFileSheetName]" ValuesType="Values" Workbook="[DriveItem]" />
+                          <ui:WriteCell Cell="A2:B2000" DisplayName="Write Cell Workbook" sap:VirtualizedContainerService.HintSize="482,125" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="[in_str_SharepointFileSheetName]" WorkbookPath="[in_str_ToBeDownloadFilePath]">
+                            <ui:WriteCell.Text>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" Value="" />
+                              </InArgument>
+                            </ui:WriteCell.Text>
+                          </ui:WriteCell>
+                          <ui:WriteRange AddHeaders="False" DataTable="[dt_SharepointFile]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="482,125" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="[in_str_SharepointFileSheetName]" StartingCell="A2" WorkbookPath="[in_str_ToBeDownloadFilePath]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="482,101" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Downloaded sharepoint file into: &quot;+in_str_ToBeDownloadFilePath]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="400,405" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <umaf:DownloadFile DriveMetadata="{x:Null}" DisplayName="Download File" File="[DriveItem]" sap:VirtualizedContainerService.HintSize="338,142" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[in_str_ToBeDownloadFilePath]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Downloaded sharepoint file into: &quot;+in_str_ToBeDownloadFilePath]" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="692,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <Sequence sap:VirtualizedContainerService.HintSize="400,295" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Warn" Message="[&quot;Failed at downloading Sharepoint file: &quot;+exception.Message]" />
+                        <Rethrow sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                      </Sequence>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
+            <TryCatch x:Key="upload" sap2010:Annotation.AnnotationText="Try to replace the file in sharepoint, if replacing is failed, rename the particular file" DisplayName="Upload the file in sharepoint" sap:VirtualizedContainerService.HintSize="582,2510" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="544,2242" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="int_RowIndex" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="482,101" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;O365 connected succesfuly&quot;]" />
+                  <Assign sap:VirtualizedContainerService.HintSize="482,70" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[in_str_SubFolder]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[in_str_SubFolder]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <umaf:FindFilesAndFolders DriveMetadata="{x:Null}" DisplayName="Find Files And Folders" DriveName="[in_str_SharepointDriveName]" First="[DriveItem]" sap:VirtualizedContainerService.HintSize="482,95" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_3" Query="[in_str_Query]" Results="[Arr_DriveItems]" SiteUrl="[in_str_SharepointSiteURL]" Subfolder="[in_str_SubFolder]" />
+                  <umae:ReadRange Range="{x:Null}" AddHeaders="False" DataTable="[dt_SharepointFile]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="482,193" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[in_str_SharepointFileSheetName]" ValuesType="Values" Workbook="[DriveItem]" />
+                  <ui:LookupDataTable CellValue="{x:Null}" LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[dt_SharepointFile]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="482,301" sap2010:WorkflowViewState.IdRef="LookupDataTable_2" LookupColumnIndex="[0]" LookupValue="[in_str_UploadingValue]" RowIndex="[int_RowIndex]" />
+                  <If Condition="[int_RowIndex=-1]" sap:VirtualizedContainerService.HintSize="482,1160" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="400,774" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <umae:WriteCell CellAddress="[&quot;A&quot;+(dt_SharepointFile.RowCount+1).ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="338,190" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="[in_str_SharepointFileSheetName]" Value="[in_str_UploadingValue]" Workbook="[DriveItem]" />
+                        <umae:SetRangeColor Color="[System.Drawing.Color.Yellow]" DisplayName="Set Range Color" sap:VirtualizedContainerService.HintSize="338,281" sap2010:WorkflowViewState.IdRef="SetRangeColor_1" Range="[&quot;A&quot;+(dt_SharepointFile.RowCount+1).ToString + &quot;:B&quot;+(dt_SharepointFile.RowCount+1).ToString]" SheetName="[in_str_SharepointFileSheetName]" Workbook="[DriveItem]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </umae:SetRangeColor>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Successfully update value: &quot; + in_str_UploadingValue+&quot; into sharepoint file&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="400,223" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Key already exist in sharepoint file, please update value&quot;]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="548,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,101" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Warn" Message="[&quot;Bot is unable to write the value in sharepoint: &quot;+exception.Message]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Switch>
+        </ActivityAction>
+      </uma:Office365ApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uma:Office365ApplicationScope>
+  </Sequence>
+</Activity>

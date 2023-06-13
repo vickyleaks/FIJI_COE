@@ -118,6 +118,7 @@
       <Variable x:TypeArguments="x:String" Name="str_orderitem_selector_number" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_TransactionCompleteExist" />
       <Variable x:TypeArguments="x:String" Name="SaveScreenshotPath" />
+      <Variable x:TypeArguments="x:String" Name="Save_ScreenShotPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -131,7 +132,7 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1444,4753" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1444,4752" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="Index" />
               <Variable x:TypeArguments="x:String" Name="ExceptionMessage" />
@@ -198,7 +199,7 @@
                 <InArgument x:TypeArguments="x:String">[str_quantity_selector_number.Replace("VTextField","")]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" CurrentIndex="[Index]" DisplayName="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" sap:VirtualizedContainerService.HintSize="1382,3165" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_li_orderItems]">
+            <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" CurrentIndex="[Index]" DisplayName="For Each: Enter Order Items and Quantity Fields into Oracle EBS portal" sap:VirtualizedContainerService.HintSize="1382,3164" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[in_li_orderItems]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
@@ -281,7 +282,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:TypeInto>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Type Into Quantity Field" DelayBetweenKeys="100" DisplayName="Type Into Quantity Field" sap:VirtualizedContainerService.HintSize="1284,175" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_li_quantity(Index)]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Type Into Quantity Field" DelayBetweenKeys="100" DisplayName="Type Into Quantity Field" sap:VirtualizedContainerService.HintSize="1284,175" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_li_quantity(Index).ToString.Trim.Replace(&quot;/0&quot;,&quot;&quot;)]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ea622218-6e88-4f42-9589-07f579d6b0dc" InformativeScreenshot="cb2ee378bb7f671f11f80f118f521d92" Selector="[string.Format(&quot;&lt;java name='Qty' role='text' virtualname='{0}' /&gt;&quot;, str_quantity_virtualselector)]">
                           <ui:Target.TimeoutMS>
@@ -691,7 +692,7 @@
                                                             <av:PointCollection x:Key="ConnectorLocation">10,1190 0,1190 0,1040 30,1040</av:PointCollection>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <Sequence sap2010:Annotation.AnnotationText="Sequence: Click Ok on new line item multiple popup's, If action failed through AE" DisplayName="Sequence: Click Ok on new line item multiple popup's, If action failed through AE" sap:VirtualizedContainerService.HintSize="200,147" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                                        <Sequence sap2010:Annotation.AnnotationText="Sequence: Click Ok on new line item multiple popup's, If action failed through AE" DisplayName="Sequence: Click Ok on new line item multiple popup's, If action failed through AE" sap:VirtualizedContainerService.HintSize="644,1713" sap2010:WorkflowViewState.IdRef="Sequence_12">
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -706,7 +707,7 @@
                                                               <InArgument x:TypeArguments="x:Int32">[int_popupCounter + 1]</InArgument>
                                                             </Assign.Value>
                                                           </Assign>
-                                                          <If sap2010:Annotation.AnnotationText="If: Multiple popups action failed" Condition="[int_popupCounter &gt; 10]" DisplayName="If: Multiple popups action failed" sap:VirtualizedContainerService.HintSize="582,1414" sap2010:WorkflowViewState.IdRef="If_4">
+                                                          <If sap2010:Annotation.AnnotationText="If: Multiple popups action failed" Condition="[int_popupCounter &gt; 10]" DisplayName="If: Multiple popups action failed" sap:VirtualizedContainerService.HintSize="582,1450" sap2010:WorkflowViewState.IdRef="If_4">
                                                             <sap:WorkflowViewStateService.ViewState>
                                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -715,7 +716,7 @@
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>
                                                             <If.Then>
-                                                              <Sequence sap:VirtualizedContainerService.HintSize="500,995" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                                              <Sequence sap:VirtualizedContainerService.HintSize="500,1031" sap2010:WorkflowViewState.IdRef="Sequence_13">
                                                                 <sap:WorkflowViewStateService.ViewState>
                                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -791,7 +792,13 @@
                                                                     </scg:Dictionary>
                                                                   </sap:WorkflowViewStateService.ViewState>
                                                                 </ui:InvokeWorkflowFile>
-                                                                <Throw Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="438,61" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                                                                <Throw Exception="[New Exception(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="438,97" sap2010:WorkflowViewState.IdRef="Throw_4">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                </Throw>
                                                               </Sequence>
                                                             </If.Then>
                                                             <If.Else>
@@ -858,6 +865,52 @@
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
+                                                  <TryCatch sap2010:Annotation.AnnotationText="Take a screenshot of the current state of the screen to facilitate debugging." DisplayName="Try taking screenshot" sap:VirtualizedContainerService.HintSize="482,390" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                    <TryCatch.Try>
+                                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                                                        <ui:InvokeWorkflowFile.Arguments>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[in_dict_config("ExceptionScreenShotFolderPath").ToString]</InArgument>
+                                                          <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[Save_ScreenShotPath]</InOutArgument>
+                                                        </ui:InvokeWorkflowFile.Arguments>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:InvokeWorkflowFile>
+                                                    </TryCatch.Try>
+                                                    <TryCatch.Catches>
+                                                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <ActivityAction x:TypeArguments="s:Exception">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
+                                                          </ActivityAction.Argument>
+                                                          <ui:LogMessage DisplayName="Log message (Screenshot not taken)" sap:VirtualizedContainerService.HintSize="200,61" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Failed to take screenshot: &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source+&quot; At Source: &quot;+Exception.Source]" />
+                                                        </ActivityAction>
+                                                      </Catch>
+                                                    </TryCatch.Catches>
+                                                  </TryCatch>
+                                                  <Assign sap:VirtualizedContainerService.HintSize="482,70" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Object">[in_dict_Config("ExpScreenshotPath")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Object">[Save_ScreenShotPath]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
                                                   <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  OK ALT O'" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT">
                                                     <ui:Click.CursorPosition>
                                                       <ui:CursorPosition Position="Center">
@@ -870,7 +923,7 @@
                                                       </ui:CursorPosition>
                                                     </ui:Click.CursorPosition>
                                                     <ui:Click.Target>
-                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91e38b81-5a9e-4fd3-ac26-5feb646c6941" InformativeScreenshot="cf10a96b18d7e2eca82b66297834bba2" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Error Order weight  * is over *Lbs after adding the Line or changing the Qty , please take necessary action' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91e38b81-5a9e-4fd3-ac26-5feb646c6941" InformativeScreenshot="cf10a96b18d7e2eca82b66297834bba2" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*Order weight *is over*Lbs after adding*' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
                                                         <ui:Target.TimeoutMS>
                                                           <InArgument x:TypeArguments="x:Int32" />
                                                         </ui:Target.TimeoutMS>
@@ -887,7 +940,7 @@
                                                   </ui:Click>
                                                   <ui:UiElementExists DisplayName="Element Exists 'label ORA-01403:'" Exists="[blnORAExist]" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="UiElementExists_22">
                                                     <ui:UiElementExists.Target>
-                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d0bfb95c-9d0a-4f64-97f0-f55162d626c8" InformativeScreenshot="ef03b850fbba91507db4b6452d924e87" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Note*no data found in Package OE_Line_Fullfill Procedure Cancel_Line' role='internal frame' /&gt;&lt;java name='*data found in Package OE_Line_Fullfill&amp;#xD;&amp;#xA;Procedure Cancel_Line' role='label' /&gt;" TimeoutMS="10000">
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d0bfb95c-9d0a-4f64-97f0-f55162d626c8" InformativeScreenshot="ef03b850fbba91507db4b6452d924e87" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*no data found in Package OE_Line_Fullfill Procedure Cancel_Line' role='internal frame' /&gt;&lt;java name='*data found in Package OE_Line_Fullfill*Procedure Cancel_Line' role='label' /&gt;" TimeoutMS="10000">
                                                         <ui:Target.WaitForReady>
                                                           <InArgument x:TypeArguments="ui:WaitForReady" />
                                                         </ui:Target.WaitForReady>
@@ -955,7 +1008,7 @@
                                                   </If>
                                                   <ui:UiElementExists DisplayName="Element Exists 'label FRM-40212:'" Exists="[bool_OverWeightLabelExist]" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="UiElementExists_24">
                                                     <ui:UiElementExists.Target>
-                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b89345f4-1d50-4e6d-9d6f-c5187f4a4fe0" InformativeScreenshot="2285d9a5d72142567458a4bb04dd57d3" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Error Order weight  * is over * Lbs after adding the Line or changing the Qty , please take necessary action' role='internal frame' /&gt;&lt;java name='Order weight  * is over *Lbs after adding the Line&amp;#xD;&amp;#xA;or changing the Qty , please take necessary action' role='label' /&gt;" TimeoutMS="10000">
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b89345f4-1d50-4e6d-9d6f-c5187f4a4fe0" InformativeScreenshot="2285d9a5d72142567458a4bb04dd57d3" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*Order weight *is over*Lbs after adding the Line*' role='internal frame' /&gt;&lt;java name='Order weight*is over*Lbs after adding the Line*' role='label' /&gt;" TimeoutMS="10000">
                                                         <ui:Target.WaitForReady>
                                                           <InArgument x:TypeArguments="ui:WaitForReady" />
                                                         </ui:Target.WaitForReady>
@@ -994,7 +1047,7 @@
                                                             </ui:CursorPosition>
                                                           </ui:Click.CursorPosition>
                                                           <ui:Click.Target>
-                                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91e38b81-5a9e-4fd3-ac26-5feb646c6941" InformativeScreenshot="cf10a96b18d7e2eca82b66297834bba2" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='Error Order weight  * is over *Lbs after adding the Line or changing the Qty , please take necessary action' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
+                                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91e38b81-5a9e-4fd3-ac26-5feb646c6941" InformativeScreenshot="cf10a96b18d7e2eca82b66297834bba2" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*Order weight  * is over *Lbs after adding the Line or changing the Qty , please take necessary action' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
                                                               <ui:Target.TimeoutMS>
                                                                 <InArgument x:TypeArguments="x:Int32" />
                                                               </ui:Target.TimeoutMS>
@@ -1257,7 +1310,7 @@
                                           </ui:UiElementExists>
                                           <ui:UiElementExists DisplayName="Element Exists 'label FRM-40212:'" Exists="[bool_OverWeightLabelExist]" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="UiElementExists_21">
                                             <ui:UiElementExists.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b89345f4-1d50-4e6d-9d6f-c5187f4a4fe0" InformativeScreenshot="2285d9a5d72142567458a4bb04dd57d3" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*Order weight*is over*Lbs after adding the Line or changing the Qty , please take necessary action' role='internal frame' /&gt;&lt;java name='Order weight*is over*Lbs after adding the*Line or changing the Qty , please take necessary action' role='label' /&gt;" TimeoutMS="1000">
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b89345f4-1d50-4e6d-9d6f-c5187f4a4fe0" InformativeScreenshot="2285d9a5d72142567458a4bb04dd57d3" Selector="&lt;java name='Sales Orders*' role='internal frame' /&gt;&lt;java name='*Order weight *is over*Lbs after adding*' role='internal frame' /&gt;&lt;java name='Order weight *is over*Lbs after adding*' role='label' /&gt;" TimeoutMS="1000">
                                                 <ui:Target.WaitForReady>
                                                   <InArgument x:TypeArguments="ui:WaitForReady" />
                                                 </ui:Target.WaitForReady>

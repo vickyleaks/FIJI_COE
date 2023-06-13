@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="FIJI_COE_CancelPO" this:FIJI_COE_CancelPO.in_str_CustomerPO="123456" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="FIJI_COE_CancelPO" this:FIJI_COE_CancelPO.in_str_CustomerPO="123456789" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_str_CustomerPO" Type="InArgument(x:String)" />
     <x:Property Name="in_dict_config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -7,10 +7,10 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,5016</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,5999</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>FIJI_COE_CancelPO_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="64">
+    <scg:List x:TypeArguments="x:String" Capacity="34">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -48,7 +48,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="52">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="53">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -100,23 +100,33 @@
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FIJI_COE_CancelPO" sap:VirtualizedContainerService.HintSize="678,4951" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FIJI_COE_CancelPO" sap:VirtualizedContainerService.HintSize="822,5934" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch: Cancel the PO, if any SE occurs" sap:VirtualizedContainerService.HintSize="616,4829" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="760,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0029").ToString.Replace("{0}","FIJI_COE_CancelPO.xaml")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_CancelPO.xaml</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">Info</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0029</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <TryCatch DisplayName="Try Catch: Cancel the PO, if any SE occurs" sap:VirtualizedContainerService.HintSize="760,5650" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'jp2launcher.exe Oracle'" sap:VirtualizedContainerService.HintSize="578,4592" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="8ba64a446af5555956f69d15d147bd49" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;">
+        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'jp2launcher.exe Oracle'" sap:VirtualizedContainerService.HintSize="722,5413" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="8ba64a446af5555956f69d15d147bd49" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;">
           <ui:WindowScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="544,4436" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="688,5257" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="bool_OrderOrganizerBtn" />
                   <Variable x:TypeArguments="x:Int32" Name="int_POExistCounter" />
@@ -130,7 +140,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'label Navigator'" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="SetFocus_1">
+                <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'label Navigator'" sap:VirtualizedContainerService.HintSize="626,116" sap2010:WorkflowViewState.IdRef="SetFocus_1">
                   <ui:SetFocus.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="55468dd7-788b-4fd3-9430-a0668d22593c" InformativeScreenshot="a6be193ff8b88b76521d0c52ed18d925" Selector="&lt;java name='Navigator - FW US OM Super User' role='internal frame' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -142,7 +152,7 @@
                     </ui:Target>
                   </ui:SetFocus.Target>
                 </ui:SetFocus>
-                <ui:UiElementExists DisplayName="Element Exists: 'Order Organizer'" Exists="[bool_OrderOrganizerBtn]" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                <ui:UiElementExists DisplayName="Element Exists: 'Order Organizer'" Exists="[bool_OrderOrganizerBtn]" sap:VirtualizedContainerService.HintSize="626,116" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                   <ui:UiElementExists.Target>
                     <ui:Target Element="{x:Null}" Id="824da81f-0880-4dff-abbf-dc4fe837c8fe" InformativeScreenshot="c04f0c93de8507d0413ef486a96889ff" Selector="&lt;java name='Navigator*' role='internal frame' /&gt;&lt;java name='*.* Order Organizer' role='label' /&gt;" TimeoutMS="10000">
                       <ui:Target.ClippingRegion>
@@ -154,7 +164,8 @@
                     </ui:Target>
                   </ui:UiElementExists.Target>
                 </ui:UiElementExists>
-                <If sap2010:Annotation.AnnotationText="If:Order Organizer button exist in Navigator Click it, Took  Order Organizer from left side" Condition="[bool_OrderOrganizerBtn]" DisplayName="If:Order Organizer button exist in Navigator Click it, Took  Order Organizer from left side" sap:VirtualizedContainerService.HintSize="482,1149" sap2010:WorkflowViewState.IdRef="If_1">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="626,101" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[if(bool_OrderOrganizerBtn,&quot;Order Organizer btn exist&quot;,&quot;Order Organizer btn does not exist&quot;)]" />
+                <If sap2010:Annotation.AnnotationText="If:Order Organizer button exist in Navigator Click it, Took  Order Organizer from left side" Condition="[bool_OrderOrganizerBtn]" DisplayName="If:Order Organizer button exist in Navigator Click it, Took  Order Organizer from left side" sap:VirtualizedContainerService.HintSize="626,1149" sap2010:WorkflowViewState.IdRef="If_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -291,7 +302,7 @@
                     </Sequence>
                   </If.Else>
                 </If>
-                <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'push button  Open alt O'" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'push button  Open alt O'" sap:VirtualizedContainerService.HintSize="626,116" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
                   <ui:Click.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -313,7 +324,8 @@
                     </ui:Target>
                   </ui:Click.Target>
                 </ui:Click>
-                <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'panel'" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="SetFocus_2">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="626,101" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Opened Order Organizer popup&quot;]" />
+                <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'panel'" sap:VirtualizedContainerService.HintSize="626,116" sap2010:WorkflowViewState.IdRef="SetFocus_2">
                   <ui:SetFocus.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fa6aaf19-a207-4471-9752-dca378c2664b" InformativeScreenshot="5707b6fab314f91d52b58e2911e129aa" Selector="&lt;java name='Find  Orders/Quotes' role='internal frame' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -325,7 +337,7 @@
                     </ui:Target>
                   </ui:SetFocus.Target>
                 </ui:SetFocus>
-                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="1000" DisplayName="Enters Customer PO" sap:VirtualizedContainerService.HintSize="482,144" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_str_CustomerPO+ &quot;[k(enter)]&quot;]">
+                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="1000" DisplayName="Enters Customer PO" EmptyField="True" sap:VirtualizedContainerService.HintSize="626,144" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_str_CustomerPO+ &quot;[k(enter)]&quot;]">
                   <ui:TypeInto.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3498db4b-474e-4e6c-8451-99ba81462c32" InformativeScreenshot="f39c559e32b187532296758fe0c335e3" Selector="&lt;java name='Find  Orders/Quotes' role='internal frame' /&gt;&lt;java name='Customer POList of Values' role='text' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -337,7 +349,8 @@
                     </ui:Target>
                   </ui:TypeInto.Target>
                 </ui:TypeInto>
-                <Assign sap:VirtualizedContainerService.HintSize="482,70" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="626,101" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Entered Customer PO and enter: &quot;+in_str_CustomerPO]" />
+                <Assign sap:VirtualizedContainerService.HintSize="626,70" sap2010:WorkflowViewState.IdRef="Assign_1">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[int_POExistCounter]</OutArgument>
                   </Assign.To>
@@ -345,7 +358,7 @@
                     <InArgument x:TypeArguments="x:Int32">0</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(bln_NoPOFound or str_POStatus&lt;&gt;&quot;&quot; or int_POExistCounter&gt;10)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="482,569" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+                <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[Not(bln_NoPOFound or str_POStatus&lt;&gt;&quot;&quot; or int_POExistCounter&gt;10)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="626,569" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
                   <ui:InterruptibleDoWhile.Body>
                     <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="400,394" sap2010:WorkflowViewState.IdRef="Sequence_5">
                       <sap:WorkflowViewStateService.ViewState>
@@ -380,15 +393,18 @@
                     </Sequence>
                   </ui:InterruptibleDoWhile.Body>
                 </ui:InterruptibleDoWhile>
-                <If Condition="[str_POStatus.Trim=&quot;Entered&quot;]" sap:VirtualizedContainerService.HintSize="482,1194" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[str_POStatus.Trim=&quot;Entered&quot;]" sap:VirtualizedContainerService.HintSize="626,1592" sap2010:WorkflowViewState.IdRef="If_2">
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="400,918" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence sap:VirtualizedContainerService.HintSize="544,1316" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Boolean" Name="blnCancelOKPopupExist" />
+                      </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click Actions" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click Actions" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
                         <ui:Click.CursorPosition>
                           <ui:CursorPosition Position="Center">
                             <ui:CursorPosition.OffsetX>
@@ -410,7 +426,7 @@
                           </ui:Target>
                         </ui:Click.Target>
                       </ui:Click>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="500" DelayBetweenKeys="100" DelayMS="500" DisplayName="Type Into 'text  Find'" EmptyField="True" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_dict_config(&quot;CancelPOValue&quot;).ToString+ &quot;[k(enter)]&quot;]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="500" DelayBetweenKeys="100" DelayMS="500" DisplayName="Type Into 'text  Find'" EmptyField="True" sap:VirtualizedContainerService.HintSize="482,144" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_dict_config(&quot;CancelPOValue&quot;).ToString+ &quot;[k(enter)]&quot;]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="08707fb1-d960-4a5c-a508-ce56483f8d19" InformativeScreenshot="8cab1cd418228b916db05675fb348b6f" Selector="&lt;java name='Order Organizer' role='internal frame' /&gt;&lt;java name='Actions' role='internal frame' /&gt;&lt;java name='*Find' role='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -422,7 +438,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="1000" DelayBetweenKeys="100" DisplayName="Type Into 'text ReasonList'" EmptyField="True" sap:VirtualizedContainerService.HintSize="338,144" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[in_dict_config(&quot;CancelPOReason&quot;).ToString+ &quot;[k(enter)]&quot;]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="1000" DelayBetweenKeys="100" DisplayName="Type Into 'text ReasonList'" EmptyField="True" sap:VirtualizedContainerService.HintSize="482,144" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[in_dict_config(&quot;CancelPOReason&quot;).ToString+ &quot;[k(enter)]&quot;]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c1d75505-378b-416e-a653-09739837dea7" InformativeScreenshot="8b23d32d07f71fac2207620160a206bc" Selector="&lt;java name='Cancel Order(s)' role='internal frame' /&gt;&lt;java name='ReasonList of Values' role='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -434,7 +450,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:UiElementExists Exists="{x:Null}" DisplayName="Element Exists 'label APP-ONT-251154:'" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+                      <ui:UiElementExists DisplayName="Element Exists 'label APP-ONT-251154:'" Exists="[blnCancelOKPopupExist]" sap:VirtualizedContainerService.HintSize="482,116" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
                         <ui:UiElementExists.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a9bf54b1-f008-4142-b6ae-ffa300421a6f" InformativeScreenshot="f339931a54d68c0c41fe30f595331e41" Selector="&lt;java name='Cancel Order(s)' role='internal frame' /&gt;&lt;java name='*Cancellation completed successfully. Please requery*to see the changes.' role='internal frame' /&gt;&lt;java name='*Cancellation completed successfully. Please*to see the changes.' role='label' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -446,28 +462,48 @@
                           </ui:Target>
                         </ui:UiElementExists.Target>
                       </ui:UiElementExists>
-                      <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'push button  OK ALT O'" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
-                        <ui:Click.CursorPosition>
-                          <ui:CursorPosition Position="Center">
-                            <ui:CursorPosition.OffsetX>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:CursorPosition.OffsetX>
-                            <ui:CursorPosition.OffsetY>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:CursorPosition.OffsetY>
-                          </ui:CursorPosition>
-                        </ui:Click.CursorPosition>
-                        <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cce6ee2d-3bb2-438c-ba01-3ea13d17292b" InformativeScreenshot="423661eea851d15f7ab128f68521ade3" Selector="&lt;java name='Cancel Order(s)' role='internal frame' /&gt;&lt;java name='*Cancellation completed successfully. Please requery*to see the changes.' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
-                            <ui:Target.TimeoutMS>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:Target.TimeoutMS>
-                            <ui:Target.WaitForReady>
-                              <InArgument x:TypeArguments="ui:WaitForReady" />
-                            </ui:Target.WaitForReady>
-                          </ui:Target>
-                        </ui:Click.Target>
-                      </ui:Click>
+                      <If Condition="[blnCancelOKPopupExist]" sap:VirtualizedContainerService.HintSize="482,514" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="400,238" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'push button  OK ALT O'" sap:VirtualizedContainerService.HintSize="338,116" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cce6ee2d-3bb2-438c-ba01-3ea13d17292b" InformativeScreenshot="423661eea851d15f7ab128f68521ade3" Selector="&lt;java name='Cancel Order(s)' role='internal frame' /&gt;&lt;java name='*Cancellation completed successfully. Please requery*to see the changes.' role='internal frame' /&gt;&lt;java name='OK*' role='push button' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="400,113" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
                     </Sequence>
                   </If.Then>
                   <If.Else>
@@ -480,7 +516,7 @@
                     </Sequence>
                   </If.Else>
                 </If>
-                <ui:UiElementExists DisplayName="Element Exists 'label Find'" Exists="[blnFindOrderPopupExist]" sap:VirtualizedContainerService.HintSize="482,61" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
+                <ui:UiElementExists DisplayName="Element Exists 'label Find'" Exists="[blnFindOrderPopupExist]" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
                   <ui:UiElementExists.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b74c806e-0e84-478a-9290-b9b9c8e19b4a" InformativeScreenshot="ac055fe7b9524e0948754289b45bcdf9" Selector="&lt;java name='Find  Orders/Quotes' role='internal frame' /&gt;&lt;java name='Find  Orders/Quotes' role='label' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -498,7 +534,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:UiElementExists>
-                <If Condition="[blnFindOrderPopupExist]" sap:VirtualizedContainerService.HintSize="482,61" sap2010:WorkflowViewState.IdRef="If_5">
+                <If Condition="[blnFindOrderPopupExist]" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="If_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -558,7 +594,7 @@
                     </Sequence>
                   </If.Else>
                 </If>
-                <ui:UiElementExists DisplayName="Element Exists 'label  Order Organizer'" Exists="[blnOrderOrganizerPopupExist]" sap:VirtualizedContainerService.HintSize="482,61" sap2010:WorkflowViewState.IdRef="UiElementExists_8">
+                <ui:UiElementExists DisplayName="Element Exists 'label  Order Organizer'" Exists="[blnOrderOrganizerPopupExist]" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="UiElementExists_8">
                   <ui:UiElementExists.Target>
                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="30bd89c2-95d7-4955-845a-51e26dab85a0" InformativeScreenshot="13302425fcc3b59586220f795b4367bb" Selector="&lt;java name='Order Organizer' role='internal frame' /&gt;&lt;java name='Order Organizer' role='label' /&gt;">
                       <ui:Target.TimeoutMS>
@@ -576,7 +612,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:UiElementExists>
-                <If Condition="[blnOrderOrganizerPopupExist]" sap:VirtualizedContainerService.HintSize="482,61" sap2010:WorkflowViewState.IdRef="If_6">
+                <If Condition="[blnOrderOrganizerPopupExist]" sap:VirtualizedContainerService.HintSize="626,61" sap2010:WorkflowViewState.IdRef="If_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -648,7 +684,7 @@
         </ui:WindowScope>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="582,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="726,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -659,20 +695,56 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="441,547" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <Sequence sap:VirtualizedContainerService.HintSize="500,977" sap2010:WorkflowViewState.IdRef="Sequence_16">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="379,101" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Failed at Cancel PO: &quot;+exception.Message]" />
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\KillAllProcesses.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,101" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Failed at Cancel PO: &quot;+exception.Message+&quot; Source: &quot;+exception.Source]" />
+              <TryCatch sap2010:Annotation.AnnotationText="Take a screenshot of the current state of the screen to facilitate debugging." DisplayName="Try taking screenshot" sap:VirtualizedContainerService.HintSize="438,390" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <TryCatch.Variables>
+                  <Variable x:TypeArguments="x:String" Name="Save_ScreenShotPath" />
+                </TryCatch.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch.Try>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="334,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[in_dict_config("ExceptionScreenShotFolderPath").ToString]</InArgument>
+                      <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[Save_ScreenShotPath]</InOutArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
+                      </ActivityAction.Argument>
+                      <ui:LogMessage DisplayName="Log message (Screenshot not taken)" sap:VirtualizedContainerService.HintSize="334,101" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[&quot;Failed to take screenshot: &quot;+Exception.Message+&quot; at Source: &quot;+Exception.Source+&quot; At Source: &quot;+Exception.Source]" />
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\KillAllProcesses.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="438,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="s:String[]" x:Key="arr_killallprocess">[in_dict_config("KillAllProcessNames").ToString.Split(","c)]</InArgument>
                   <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_config]</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="438,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_OracleLoginNew.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_dict_config]</InArgument>
                   <InArgument x:TypeArguments="x:Int32" x:Key="in_int_mailcounter" />

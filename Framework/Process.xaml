@@ -107,6 +107,7 @@
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="577,1571" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -125,16 +126,33 @@
     <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="515,101" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FIJI_COE_FetchDataFromSingularity.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="515,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_FetchDataFromSingularity.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_Config]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-        <OutArgument x:TypeArguments="snm:MailMessage" x:Key="out_mailmessage">[out_mailmessage]</OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_str_startdatetime">[str_startdatetime]</OutArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">[in_tuple_config]</InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_singularity">[dt_singularity]</OutArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_vendorfile">[in_dt_vendorfile]</InArgument>
-        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_list_OrderItem">[list_orderItem]</OutArgument>
-        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_list_quantity">[list_quantity]</OutArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_locationfile">[in_dt_locationfile]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TransactionItem">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem" />
+        </InArgument>
+        <OutArgument x:TypeArguments="snm:MailMessage" x:Key="out_mailmessage">
+          <VisualBasicReference x:TypeArguments="snm:MailMessage" ExpressionText="out_mailmessage" />
+        </OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" ExpressionText="in_tuple_config" />
+        </InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_singularity">
+          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_singularity" />
+        </OutArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_vendorfile">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_dt_vendorfile" />
+        </InArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_list_OrderItem">
+          <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="list_orderItem" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_list_quantity">
+          <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="list_quantity" />
+        </OutArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_locationfile">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_dt_locationfile" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="515,70" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -153,17 +171,11 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_CancelPO.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="371,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_CancelPO.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_CancelPO.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="371,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_CancelPO.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_CustomerPO">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;PONumber&quot;).ToString" />
-              </InArgument>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">
-                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-              </InArgument>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">
-                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" ExpressionText="in_tuple_config" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_CustomerPO">[in_Config("PONumber").ToString]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dict_config">[in_Config]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Tuple(x:String, x:String))" x:Key="in_tuple_config">[in_tuple_config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>

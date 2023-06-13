@@ -112,21 +112,11 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="580,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;SC-LM-0029&quot;).ToString.Replace(&quot;{0}&quot;,&quot;FIJI_COE_PreInitialization.xaml&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-          <Literal x:TypeArguments="x:String">FIJI_COE_PreInitialization.xaml</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-          <Literal x:TypeArguments="x:String">Info</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-          <Literal x:TypeArguments="x:String">SC-LM-0029</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0029").ToString.Replace("{0}","FIJI_COE_PreInitialization.xaml")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_PreInitialization.xaml</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">Info</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0029</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="580,784" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[in_dict_Config(&quot;ProcessFolders&quot;).ToString.Split(&quot;,&quot;)]">
@@ -172,7 +162,7 @@
         <OutArgument x:TypeArguments="x:String">[str_MissingFiles]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[If(File.Exists(in_dict_Config("VendorMappingFilePath").ToString),"",in_dict_Config("VendorMappingFilePath").ToString) + If(File.Exists(in_dict_Config("LocationMappingFilePath").ToString),"",in_dict_Config("LocationMappingFilePath").ToString) + If(File.Exists(in_dict_Config("SummaryTemplateFilePath").ToString),"",in_dict_Config("SummaryTemplateFilePath").ToString)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[If(File.Exists(in_dict_Config("CustomerMappingFilePath").ToString),"",in_dict_Config("CustomerMappingFilePath").ToString) + If(File.Exists(in_dict_Config("CustomerIDMappingFilePath").ToString),"",in_dict_Config("CustomerIDMappingFilePath").ToString) + If(File.Exists(in_dict_Config("SummaryTemplateFilePath").ToString),"",in_dict_Config("SummaryTemplateFilePath").ToString)]</InArgument>
       </Assign.Value>
     </Assign>
     <If Condition="[Not str_MissingFiles=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="580,864" sap2010:WorkflowViewState.IdRef="If_5">
@@ -196,21 +186,11 @@
           </Assign>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke_Log Wrapper" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Tuple_Config(ExceptionMessage).Item2.Replace(&quot;{0}&quot;,str_MissingFiles)" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-                <Literal x:TypeArguments="x:String">FIJI_COE_PreInitialization.xaml</Literal>
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExceptionMessage" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;Success_ LogTypeMessages&quot;).ToString.split(&quot;,&quot;c)(1)" />
-              </InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_Tuple_Config(ExceptionMessage).Item2.Replace("{0}",str_MissingFiles)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_PreInitialization.xaml</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">[ExceptionMessage]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">[in_dict_config("Success_ LogTypeMessages").ToString.split(","c)(1)]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -233,21 +213,11 @@
     </If>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="580,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_dict_config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_dict_config(&quot;SC-LM-0030&quot;).ToString.Replace(&quot;{0}&quot;,&quot;FIJI_COE_PreInitialization.xaml&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">
-          <Literal x:TypeArguments="x:String">FIJI_COE_PreInitialization.xaml</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">
-          <Literal x:TypeArguments="x:String">Info</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">
-          <Literal x:TypeArguments="x:String">SC-LM-0030</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_dict_config("SC-LM-0030").ToString.Replace("{0}","FIJI_COE_PreInitialization.xaml")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_PreInitialization.xaml</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">Info</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">SC-LM-0030</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
