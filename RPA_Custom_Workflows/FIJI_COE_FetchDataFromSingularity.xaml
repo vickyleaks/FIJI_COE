@@ -708,7 +708,7 @@
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke_Log Wrapper" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Logging_Wrapper.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_dict_config]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_Tuple_Config(ExceptionMessage).Item2.Replace("{0}",if(int_QuantityIndex=-1 and int_VendorCodeIndex=-1,"Quantity, Vendor Product Code",if(int_VendorCodeIndex=-1,"Vendor Product Code",if(int_QuantityIndex=-1,"Quantity",""))))]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message">[in_Tuple_Config(ExceptionMessage).Item2.Replace("{0}",if(int_QuantityIndex=-1 and int_VendorCodeIndex=-1,"Quantity, Vendor Product Code",if(int_VendorCodeIndex=-1,"Customer Product Code",if(int_QuantityIndex=-1,"Quantity",""))))]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_Executing_Xaml">FIJI_COE_FetchDataFromSingularity</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_Log_Message_ID">[ExceptionMessage]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_Log_Level_Type">[in_dict_config("Success_ LogTypeMessages").ToString.split(","c)(1)]</InArgument>
@@ -725,7 +725,7 @@
               <OutArgument x:TypeArguments="x:String">[ExceptionMessage]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["EX-LBM-NEDI-0011," + if(int_QuantityIndex=-1 and int_VendorCodeIndex=-1,"Quantity, Vendor Product Code",if(int_VendorCodeIndex=-1,"Vendor Product Code",if(int_QuantityIndex=-1,"Quantity","")))]</InArgument>
+              <InArgument x:TypeArguments="x:String">["EX-LBM-NEDI-0011," + if(int_QuantityIndex=-1 and int_VendorCodeIndex=-1,"Quantity, Customer Product Code",if(int_VendorCodeIndex=-1,"Customer Product Code",if(int_QuantityIndex=-1,"Quantity","")))]</InArgument>
             </Assign.Value>
           </Assign>
           <Throw DisplayName="Throw Business Exception" Exception="[New BusinessRuleException(ExceptionMessage)]" sap:VirtualizedContainerService.HintSize="379,97" sap2010:WorkflowViewState.IdRef="Throw_14" />

@@ -755,7 +755,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">330,661.333333333333 330,691.333333333333 210,691.333333333333 210,715.6</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="706,8354" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="706,7991" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -763,7 +763,7 @@
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="644,7988" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="644,7625" sap2010:WorkflowViewState.IdRef="TryCatch_13">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -771,7 +771,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence sap:VirtualizedContainerService.HintSize="606,7751" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                    <Sequence sap:VirtualizedContainerService.HintSize="606,7388" sap2010:WorkflowViewState.IdRef="Sequence_47">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1340,7 +1340,7 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_BusinessException.Message.split(&quot;,&quot;)(0)]" sap:VirtualizedContainerService.HintSize="544,1009" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                      <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_BusinessException.Message.split(&quot;,&quot;)(0)]" sap:VirtualizedContainerService.HintSize="544,646" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                         <Sequence x:Key="EX-LBM-NEDI-0011" sap:VirtualizedContainerService.HintSize="441,244" sap2010:WorkflowViewState.IdRef="Sequence_51">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1705,7 +1705,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="379,61" sap2010:WorkflowViewState.IdRef="CommentOut_15">
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="CommentOut_15">
                             <ui:CommentOut.Body>
                               <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,384" sap2010:WorkflowViewState.IdRef="Sequence_101">
                                 <sap:WorkflowViewStateService.ViewState>
@@ -1724,54 +1724,26 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:CommentOut>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_ExcelUpload.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_41" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_ExcelUpload.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RPA_Custom_Workflows\FIJI_COE_ExcelUpload.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="436,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_41" UnSafe="False" WorkflowFileName="RPA_Custom_Workflows\FIJI_COE_ExcelUpload.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                                <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SubFolder">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_SubFolder&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_Query">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_CustomerIDMappingFileName&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_ToBeDownloadFilePath">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Empty" />
-                              </InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SubFolder">[in_Config("Sharepoint_SubFolder").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_Query">[in_Config("Sharepoint_CustomerIDMappingFileName").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_ToBeDownloadFilePath">[String.Empty]</InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointUploadFile" />
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_UploadORDownload">
-                                <Literal x:TypeArguments="x:String">upload</Literal>
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointTenantID">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_TenantID&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointApplicationID">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_ApplicationID&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointApplicationSecret">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_ApplicationSecret&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointSiteURL">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_SiteURL&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointDriveName">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Sharepoint_DriveName&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointFileSheetName">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;CustomerIDCommonSheetName&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_UploadingValue">
-                                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_BusinessException.Message.Split(&quot;,&quot;)(1)" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_bln_DownloadSheet">
-                                <Literal x:TypeArguments="x:Boolean" Value="True" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_str_ToBeDownloadSheetName">
-                                <Literal x:TypeArguments="x:String">CustomerIDMapping</Literal>
-                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_UploadORDownload">upload</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointTenantID">[in_Config("Sharepoint_TenantID").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointApplicationID">[in_Config("Sharepoint_ApplicationID").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointApplicationSecret">[in_Config("Sharepoint_ApplicationSecret").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointSiteURL">[in_Config("Sharepoint_SiteURL").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointDriveName">[in_Config("Sharepoint_DriveName").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_SharepointFileSheetName">[in_Config("CustomerIDCommonSheetName").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_UploadingValue">[in_BusinessException.Message.Split(",")(1)]</InArgument>
+                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_bln_DownloadSheet">True</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_str_ToBeDownloadSheetName">CustomerIDMapping</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="436,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
                               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                               <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">[in_Config("ServerType").ToString]</InArgument>
@@ -1880,6 +1852,61 @@
                             <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">[str_SinguOutputFilePath]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
                             <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">[{str_SinguOutputFilePath,str_SinguInputFilepath}]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="EX-LBM-NEDI-0010" DisplayName="Invoke Workflow File_MW" sap:VirtualizedContainerService.HintSize="379,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="RPA_Core_Workflows\RPA_Core_Mail_Wrapper.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                              <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Server_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ServerType&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Mail_Operation_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailOperationType&quot;).ToString.Split(&quot;,&quot;c)(1)" />
+                            </InArgument>
+                            <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_MailMessages" />
+                            <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_Email_Message" />
+                            <OutArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="out_Attachments_List" />
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_isDefault_Account">
+                              <Literal x:TypeArguments="x:Boolean" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Email_Body">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Body_customerhold&quot;).ToString.Split(&quot;;&quot;c)(0) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Email_Body_customerhold&quot;).ToString.Split(&quot;;&quot;c)(1) &amp; &quot;&lt;BR&gt;&quot; &amp; &quot;&lt;BR&gt;&quot; &amp; in_Config(&quot;Mail_Signature&quot;).ToString.Replace(&quot;&lt;RobotID&gt;&quot;,in_StrEnvironmentDomainName+&quot;\&quot;+in_StrEnvironmentUsername)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Recepients_Type">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;MailRecepientsType&quot;).ToString.Split(&quot;;&quot;c)(0)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsBody_HTML">
+                              <Literal x:TypeArguments="x:Boolean" Value="True" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsAutodiscover_Enabled" />
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="in_IsMailFilter" />
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email_Subject_Business&quot;).ToString.Replace(&quot;Process Name&quot;,in_Config(&quot;logF_BusinessProcessName&quot;).ToString)" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_FromAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsFrom&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsCC&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;BusinessNotificationMailsTo&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_BusinessAttachmentPath">
+                              <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SinguOutputFilePath" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_LogMessageID" />
+                            <InArgument x:TypeArguments="scg:IEnumerable(x:String)" x:Key="in_Arr_Attachments">
+                              <VisualBasicValue x:TypeArguments="scg:IEnumerable(x:String)" ExpressionText="{}{Save_ScreenShotPath,str_SinguOutputFilePath,str_SinguInputfilepath}" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
